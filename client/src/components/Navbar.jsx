@@ -4,9 +4,10 @@ import logo from "../assets/siesLogo.png";
 
 export default function Navbar() {
   return (
-   
-        <NavLink to='/' className="inline">
-          <img src={logo} alt="Logo" className="h-20 w-20" />
+   <>
+        <NavLink to='/' className="pl-4 pt-4">
+          <img src={logo} alt="Logo" className="h-10 w-10" />
         </NavLink>
+   </>
   );
 }

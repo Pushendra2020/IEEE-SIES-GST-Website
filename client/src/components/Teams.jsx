@@ -11,7 +11,7 @@ export default function Teams() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/person/getPerson")
+      .get(`${import.meta.env.VITE_API_URL}/api/v1/person/getPerson`)
       .then((res) => {
         setMembers(res.data?.data || []);
         setError(null);
