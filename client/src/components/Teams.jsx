@@ -22,7 +22,7 @@ export default function Teams() {
 
   if (loading)
     return (
-      <p className="text-gray-500 text-center mt-10">Loading team data...</p>
+      <p className="text-green-500 text-center mt-10">Loading team data...</p>
     );
   if (error)
     return <p className="text-red-500 text-center mt-10">{error}</p>;
@@ -34,7 +34,7 @@ export default function Teams() {
   return (
     <section className="min-h-screen flex flex-col  bg-black/80 text-white py-10">
        <NavLink to='/' >
-          <img src={logo} alt="Logo" className="h-20 w-20" />
+          <img src={logo} alt="Logo" className=" ml-7 mt-7 h-20 w-20" />
         </NavLink>
       <h1 className="text-4xl font-bold  text-center font-['Press_Start_2P'] text-pink-500">
         Our Team

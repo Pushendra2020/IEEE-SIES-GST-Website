@@ -337,8 +337,8 @@ const Hero = () => {
                 <div id="starfield-container"></div>
             </div>
             <div>
-                <NavLink to='/' className="pl-4 pt-4">
-                    <img src={logo} alt="Logo" className="h-10 w-10" />
+                <NavLink to='/'>
+                    <img src={logo} alt="Logo" className=" ml-7 mt-7 h-20 w-20" />
                 </NavLink>
             </div>
             <div className="hero-container" id="home">
