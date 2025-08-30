@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+
+import React from "react";
+import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 
 const TEAM_ORDER = [
@@ -10,38 +12,25 @@ const TEAM_ORDER = [
   "MTT-S",
 ];
 
-export default function TeamSection() {
-  const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/api/v1/person/getPerson`)
-      .then((res) => {
-        let data = res.data?.data || [];
-        // Sort by team order
-        data.sort((a, b) => {
-          const aIdx = TEAM_ORDER.indexOf(a.team);
-          const bIdx = TEAM_ORDER.indexOf(b.team);
-          return (
-            (aIdx === -1 ? TEAM_ORDER.length : aIdx) -
-            (bIdx === -1 ? TEAM_ORDER.length : bIdx)
-          );
-        });
-        setMembers(data);
-        setError(null);
-      })
-      .catch(() => setError("Failed to fetch team members."))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading)
+export async function teamLoader() {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/person/getPerson`);
+  let data = res.data?.data || [];
+  // Sort by team order
+  data.sort((a, b) => {
+    const aIdx = TEAM_ORDER.indexOf(a.team);
+    const bIdx = TEAM_ORDER.indexOf(b.team);
     return (
-      <p className="text-gray-500 text-center mt-10">Loading team data...</p>
+      (aIdx === -1 ? TEAM_ORDER.length : aIdx) -
+      (bIdx === -1 ? TEAM_ORDER.length : bIdx)
     );
-  if (error)
-    return <p className="text-red-500 text-center mt-10">{error}</p>;
-  if (!members.length)
+  });
+  return data;
+}
+
+export default function TeamSection() {
+  const members = useLoaderData();
+  if (!members || !members.length)
     return (
       <p className="text-gray-500 text-center mt-10">No team data found.</p>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import "./index.css";
 import "./custom.css";
-
+import { teamLoader } from "./components/team";
 
 
 const Team = React.lazy(() => import("./components/Teams"));
@@ -35,7 +35,11 @@ export default function App() {
               </>
             }
           />
-          <Route path="/team" element={<Team />} />
+          <Route
+            Loader={teamLoader}
+            path="/team"
+            element={<Team />}
+          />
         </Routes>
       </React.Suspense>
     </BrowserRouter>
