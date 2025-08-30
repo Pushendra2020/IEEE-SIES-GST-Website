@@ -157,7 +157,7 @@ const deleteEvent = async (req, res) => {
       try {
         const result = await cloudinary.api.delete_resources([existingEvent.eventImage.public_id]);
         console.log("Cloudinary destroy result:", result);
-        
+
         if (result.deleted && result.deleted[existingEvent.eventImage.public_id] === 'deleted') {
           console.log("Image successfully deleted from Cloudinary");
         } else {
@@ -166,7 +166,7 @@ const deleteEvent = async (req, res) => {
       } catch (cloudinaryError) {
         console.error("Error deleting from Cloudinary:", cloudinaryError);
          return res.status(500).json({ message: "Failed to delete the image from Cloudinary" });
-       
+
       }
     } else {
       console.log("No image public_id found for this event");
@@ -174,25 +174,24 @@ const deleteEvent = async (req, res) => {
 
     console.log("Proceeding to delete from database");
 
-   
     const deletedEvent = await Event.findByIdAndDelete(id);
-    
+
     if (!deletedEvent) {
       return res.status(500).json({ message: "Failed to delete the event from database" });
     }
 
     console.log("Event successfully deleted:", deletedEvent);
-    
-    return res.status(200).json({ 
-      message: "Event deleted successfully", 
-      data: deletedEvent 
+
+    return res.status(200).json({
+      message: "Event deleted successfully",
+      data: deletedEvent
     });
 
   } catch (error) {
     console.error("Error in deleteEvent:", error);
-    return res.status(500).json({ 
-      message: "Server error", 
-      error: error.message 
+    return res.status(500).json({
+      message: "Server error",
+      error: error.message
     });
   }
 };

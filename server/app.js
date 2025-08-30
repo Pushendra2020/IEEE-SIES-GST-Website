@@ -3,7 +3,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors({
-    origin:process.env.ORIGIN,
+    origin:process.env.ORIGIN || 'http://localhost:5174',
     credentials:true
 }))
 
