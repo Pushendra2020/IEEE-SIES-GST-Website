@@ -78,7 +78,7 @@ export default function FAQComponent() {
   return (
     <div className="w-full rounded-3xl bg-white/10 backdrop-blur-lg border border-cyan-400 shadow-lg p-8 space-y-6">
       <h2 className="text-3xl font-extrabold text-white mb-4 tracking-wide drop-shadow-lg">Frequently Asked Questions</h2>
-      <Accordion type="single" collapsible className="w-full" defaultValue="3">
+      <Accordion type="single" collapsible className="w-full" defaultValue="0">
         {items.map((item) => (
           <AccordionItem value={item.id} key={item.id} className="py-2">
             <AccordionPrimitive.Header className="flex">

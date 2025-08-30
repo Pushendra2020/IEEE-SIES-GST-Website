@@ -21,13 +21,15 @@ export default function Contact() {
           <h2 className="text-2xl font-extrabold text-white mb-2 tracking-wide drop-shadow-lg">IEEE Student Chapter of SIES GST</h2>
           <p className="text-lg text-white/80 mb-2">IEEE is the oldest student body of SIES GST.</p>
           <nav className="flex flex-wrap gap-4 text-cyan-400 text-base font-semibold mb-2">
-            <a href="/" className="hover:text-pink-400">Home</a>
+            <a href="#home" className="hover:text-pink-400">Home</a>
             <span>|</span>
-            <a href="/events" className="hover:text-pink-400">Events</a>
+            <a  href="#events" className="hover:text-pink-400">Events</a>
             <span>|</span>
-            <a href="/gallery" className="hover:text-pink-400">Gallery</a>
+            <a href="#gallery" className="hover:text-pink-400">Gallery</a>
             <span>|</span>
-            <a href="/aboutus" className="hover:text-pink-400">About Us</a>
+            <a href="#aboutus" className="hover:text-pink-400">About Us</a>
+            <span>|</span>
+            <a href="#faqs" className="hover:text-pink-400">FAQs</a>
           </nav>
           <span className="text-cyan-400 text-sm mt-4">© SIES GST, NERUL</span>
         </div>

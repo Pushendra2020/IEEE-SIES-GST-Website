@@ -20,14 +20,14 @@ const EventCard = ({
 
   return (
     <motion.div
-      className="w-[28rem] p-4 rounded-3xl bg-white/20 backdrop-blur-lg border border-white/30 shadow-lg"
+      className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl p-2 sm:p-4 rounded-3xl bg-white/20 backdrop-blur-lg border border-white/30 shadow-lg"
       whileHover={{ scale: 1.02, y: -5 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       animate={{ height: "auto" }}
     >
       {/* Image Container */}
-      <div className="relative  mb-6">
-        <div className="w-full h-48 bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700">
+      <div className="relative mb-4 sm:mb-6">
+        <div className="w-full h-40 sm:h-48 md:h-56 bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-700">
           <img
             src={image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=300&fit=crop'}
             alt={title}
@@ -40,28 +40,25 @@ const EventCard = ({
       </div>
 
       {/* Title and State */}
-      <div className="flex justify-between items-start mb-4">
-        <h3 className="text-xl font-semibold text-white flex-1 mr-4">
+      <div className="flex justify-between items-start mb-2 sm:mb-4">
+        <h3 className="text-lg sm:text-xl font-semibold text-white flex-1 mr-2 sm:mr-4">
           {title}
         </h3>
-        <span className="text-gray-300 hover:text-orange-400 uppercase text-sm font-medium whitespace-nowrap">
+        <span className="text-gray-300 hover:text-orange-400 uppercase text-xs sm:text-sm font-medium whitespace-nowrap">
           {state}
         </span>
       </div>
 
       {/* Description */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <motion.p 
-          className="text-gray-300 text-sm leading-relaxed mb-4"
+          className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-2 sm:mb-4"
           animate={{ height: "auto" }}
           transition={{ duration: 0.3 }}
         >
           {displayText}
           {!isExpanded && shouldShowSeeMore && "..."}
         </motion.p>
-        
-        {/* Description lines for visual effect */}
-       
       </div>
 
       {/* See more/See less button */}

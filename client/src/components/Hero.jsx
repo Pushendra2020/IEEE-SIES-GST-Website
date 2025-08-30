@@ -335,30 +335,27 @@ const Hero = () => {
                 <div className="shape shape3"></div>
                 <div className="shape shape4"></div>
                 <div id="starfield-container"></div>
-            </div>
-            <div>
-                <NavLink to='/'>
-                    <img src={logo} alt="Logo" className=" ml-7 mt-7 h-20 w-20" />
-                </NavLink>
+           
+                <div className="w-full flex items-start">
+                    <NavLink to='/'>
+                        <img src={logo} alt="Logo" className="mt-4 ml-4 w-14 h-14 sm:w-20 sm:h-20" />
+                    </NavLink>
+                </div>
+            
             </div>
             <div className="hero-container" id="home">
                 <div className="retro-text" data-text="IEEE-SIESGST" ref={heroTextRef}>IEEE-SIESGST</div>
                 <div className="hero-tagline" ref={taglineRef}>Excellence through innovation</div>
-                <nav className="navbar">
-                    <ul className="nav-menu">
-                        <li className="nav-item"><a href="#home" className="nav-link text-white">Home</a></li>
-                        <li className="nav-item">
-                            <a href="#aboutus" className="nav-link text-white">About Us</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#events" className="nav-link text-white">Events</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#gallery" className="nav-link text-white">Gallery</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#contact" className="nav-link text-white">Contact</a>
-                        </li>
+                <nav className="navbar w-full px-2 sm:px-6">
+                    <ul className="nav-menu flex flex-wrap justify-center items-center gap-2 sm:gap-4 w-full text-xs sm:text-base">
+                        <li className="nav-item"><a href="#home" className="nav-link text-white px-2 py-1">Home</a></li>
+                        <li className="nav-item"><a href="#aboutus" className="nav-link text-white px-2 py-1">About Us</a></li>
+                        <li className="nav-item"><a href="#events" className="nav-link text-white px-2 py-1">Events</a></li>
+                        
+                        <li className="nav-item"><a href="#gallery" className="nav-link text-white px-2 py-1">Gallery</a></li>
+                        <li className="nav-item"><a href="#faqs" className="nav-link text-white px-2 py-1">FAQs</a></li>
+
+                        <li className="nav-item"><a href="#contact" className="nav-link text-white px-2 py-1">Contact</a></li>
                     </ul>
                 </nav>
                 <NavLink to="/team" className="enter-button">OUR TEAM</NavLink>

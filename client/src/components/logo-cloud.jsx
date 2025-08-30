@@ -10,13 +10,13 @@ import IEEE6 from "../assets/IEEE6.jpeg"
 export default function LogoCloud() {
     return (
         <section className="overflow-hidden py-10 bg-transparent">
-            <div className="group relative mx-auto max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-7xl px-2 sm:px-6">
+            <div className="group relative mx-auto max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-7xl px-2 sm:px-6">
                 <div className="flex flex-col items-center md:flex-row">
-                    <div className="relative py-4 px-2 sm:py-6 sm:px-10 border-2 sm:border-4 border-indigo-500 border-solid rounded-lg bg-gradient-to-r from-cyan-900 via-black to-pink-900 w-full shadow-xl">
+                    <div className="relative py-6 px-2 sm:py-8 sm:px-10 border-2 sm:border-4 border-indigo-500 border-solid rounded-lg bg-gradient-to-r from-cyan-900 via-black to-pink-900 w-full shadow-xl">
                         <InfiniteSlider speedOnHover={20} speed={40} gap={32}>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE1}
                                     alt="Nvidia Logo"
                                     height="128"
@@ -24,7 +24,7 @@ export default function LogoCloud() {
                             </div>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE2}
                                     alt="Column Logo"
                                     height="112"
@@ -32,7 +32,7 @@ export default function LogoCloud() {
                             </div>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE3}
                                     alt="GitHub Logo"
                                     height="112"
@@ -40,7 +40,7 @@ export default function LogoCloud() {
                             </div>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE4}
                                     alt="Nike Logo"
                                     height="128"
@@ -48,7 +48,7 @@ export default function LogoCloud() {
                             </div>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE5}
                                     alt="Lemon Squeezy Logo"
                                     height="128"
@@ -56,7 +56,7 @@ export default function LogoCloud() {
                             </div>
                             <div className="flex">
                                 <img
-                                    className="mx-auto h-24 sm:h-40 md:h-64 w-auto dark:invert"
+                                    className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE6}
                                     alt="Laravel Logo"
                                     height="112"
