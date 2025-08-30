@@ -1,11 +1,14 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import "./custom.css";
 import { teamLoader } from "./components/team";
 
 
-const Team = React.lazy(() => import("./components/Teams"));
+const Teams = React.lazy(() => import("./components/Teams"));
 const AboutUs = React.lazy(() => import("./pages/AboutUs"));
 const Events = React.lazy(() => import("./pages/Events"));
 const Gallery = React.lazy(() => import("./pages/Gallery"));
@@ -14,34 +17,34 @@ const Hero = React.lazy(() => import("./components/Hero"));
 const FAQ = React.lazy(() => import("./pages/FAQ"));
 
 
-export default function App() {
-  return (
-    <BrowserRouter>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
       <React.Suspense fallback={<div className="text-center text-cyan-400 mt-20">Loading...</div>}>
-   
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-       
-
-                <Hero/>
-                <AboutUs />
-                <Events />
-                <Gallery />
-                <FAQ/>
-                <Contact />
-              </>
-            }
-          />
-          <Route
-            Loader={teamLoader}
-            path="/team"
-            element={<Team />}
-          />
-        </Routes>
+        <>
+          <Hero/>
+          <AboutUs />
+          <Events />
+          <Gallery />
+          <FAQ/>
+          <Contact />
+        </>
       </React.Suspense>
-    </BrowserRouter>
-  );
+    ),
+  },
+  {
+    path: "/team",
+    element: (
+      <React.Suspense fallback={<div className="text-center text-cyan-400 mt-20">Loading...</div>}>
+        <Teams />
+      </React.Suspense>
+    ),
+    loader: teamLoader,
+  },
+]);
+
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }
