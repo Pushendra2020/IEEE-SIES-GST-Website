@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import "./index.css";
 import "./custom.css";
 
-import SplashCursor from "./components/Animations/SplashCursor/SplashCursor.jsx";
+
+
 const Team = React.lazy(() => import("./components/Teams"));
 const AboutUs = React.lazy(() => import("./pages/AboutUs"));
 const Events = React.lazy(() => import("./pages/Events"));
@@ -16,13 +17,15 @@ const FAQ = React.lazy(() => import("./pages/FAQ"));
 export default function App() {
   return (
     <BrowserRouter>
-      <SplashCursor/>
       <React.Suspense fallback={<div className="text-center text-cyan-400 mt-20">Loading...</div>}>
+   
         <Routes>
           <Route
             path="/"
             element={
               <>
+       
+
                 <Hero/>
                 <AboutUs />
                 <Events />
