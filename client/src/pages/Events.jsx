@@ -521,6 +521,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, MapPin } from 'lucide-react';
 import EventCard from '../components/EventCard.jsx';
+import axios from 'axios';
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -529,9 +530,8 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/v1/event/getEvent');
-        const data = await response.json();
-        setEvents(data.data || []);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/event/getEvent`);
+        setEvents(response.data.data || []);
       } catch (err) {
         setError('Failed to fetch events.');
       } finally {

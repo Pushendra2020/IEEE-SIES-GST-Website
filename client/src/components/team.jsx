@@ -16,8 +16,7 @@ export default function TeamSection() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/person/getPerson")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/v1/person/getPerson`)
       .then((res) => {
         let data = res.data?.data || [];
         // Sort by team order
