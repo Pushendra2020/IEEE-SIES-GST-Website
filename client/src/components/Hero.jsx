@@ -116,7 +116,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import '../index.css'
 import '../custom.css'
 import logo from "../assets/siesLogo.png";
-import { useMainEffects } from "../mainScript";
+//import { useMainEffects } from "../mainScript";
 // Register the ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
 
