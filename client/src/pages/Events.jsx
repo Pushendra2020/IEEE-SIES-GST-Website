@@ -566,23 +566,25 @@ const Events = () => {
   }
 
   return (
-    <div id="events"  className="min-h-screen parallax-section py-16">
+    <div id="events" className="min-h-screen parallax-section py-16">
       <div className="text-center mb-12">
         <h1 className="section-title" style={{ color: "#ff00a6" }}>
           Events
         </h1>
       </div>
-      <div className="max-w-6xl  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-56 justify-items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 px-2 sm:px-4 lg:px-8 justify-items-center">
         {events.map((event) => (
-          <EventCard
-            key={event._id}
-            image={event.eventImage?.url}
-            title={event.eventName}
-            description={event.eventDescription}
-            state={event.eventState}
-            link={event.eventLink}
-            eventType={event.eventType}
-          />
+          <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl flex justify-center">
+            <EventCard
+              key={event._id}
+              image={event.eventImage?.url}
+              title={event.eventName}
+              description={event.eventDescription}
+              state={event.eventState}
+              link={event.eventLink}
+              eventType={event.eventType}
+            />
+          </div>
         ))}
       </div>
     </div>

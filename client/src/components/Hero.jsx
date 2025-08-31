@@ -123,7 +123,7 @@ gsap.registerPlugin(ScrollToPlugin)
 const Hero = () => {
     const heroTextRef = useRef(null)
     const taglineRef = useRef(null)
-    useMainEffects()
+    //useMainEffects()
     useEffect(() => {
         // Smooth scroll function
         const smoothScroll = (target, duration = 1.5) => {
@@ -335,6 +335,7 @@ const Hero = () => {
                 <div className="shape shape3"></div>
                 <div className="shape shape4"></div>
                 <div id="starfield-container"></div>
+            </div>
            
                 <div className="w-full flex items-start">
                     <NavLink to='/'>
@@ -342,7 +343,6 @@ const Hero = () => {
                     </NavLink>
                 </div>
             
-            </div>
             <div className="hero-container" id="home">
                 <div className="retro-text" data-text="IEEE-SIESGST" ref={heroTextRef}>IEEE-SIESGST</div>
                 <div className="hero-tagline" ref={taglineRef}>Excellence through innovation</div>

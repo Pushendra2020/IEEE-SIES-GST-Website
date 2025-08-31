@@ -44,7 +44,7 @@ const EventCard = ({
         <h3 className="text-lg sm:text-xl font-semibold text-white flex-1 mr-2 sm:mr-4">
           {title}
         </h3>
-        <span className="text-gray-300 hover:text-orange-400 uppercase text-xs sm:text-sm font-medium whitespace-nowrap">
+        <span className="text-gray-300 cursor-pointer hover:text-orange-400 uppercase text-xs sm:text-sm font-medium whitespace-nowrap">
           {state}
         </span>
       </div>
