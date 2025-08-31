@@ -22,7 +22,7 @@ export default function Contact() {
           <p className="text-lg text-white/80 mb-2">IEEE is the oldest student body of SIES GST.</p>
           <nav className="flex flex-wrap gap-4 text-cyan-400 text-base font-semibold mb-2">
             <a href="#home" className="hover:text-pink-400">Home</a>
-            <span>|</span>
+            <span>|</span> 
             <a  href="#events" className="hover:text-pink-400">Events</a>
             <span>|</span>
             <a href="#gallery" className="hover:text-pink-400">Gallery</a>
