@@ -1,7 +1,7 @@
 import React from "react";
-import mtts from "../assets/mtts.png";
-import cs from "../assets/cs.png";
-import wie from "../assets/wie.png";
+import mtts from "../assets/mtts.webp";
+import cs from "../assets/cs.webp";
+import wie from "../assets/wie.webp";
 import { NavLink } from "react-router-dom";
 export default function AboutUs() {
   return (

@@ -1,11 +1,11 @@
 import { InfiniteSlider } from '../components/ui/infinite-slider'
 import { ProgressiveBlur } from '../components/ui/progressive-blur'
-import IEEE1 from "../assets/IEEE1.jpeg"
-import IEEE2 from "../assets/IEEE2.jpeg"
-import IEEE3 from "../assets/IEEE3.jpeg"
-import IEEE4 from "../assets/IEEE4.jpeg"
-import IEEE5 from "../assets/IEEE5.jpeg"
-import IEEE6 from "../assets/IEEE6.jpeg"
+import IEEE1 from "../assets/IEEE1.webp"
+import IEEE2 from "../assets/IEEE2.webp"
+import IEEE3 from "../assets/IEEE3.webp"
+import IEEE4 from "../assets/IEEE4.webp"
+import IEEE5 from "../assets/IEEE5.webp"
+//import IEEE6 from "../assets/IEEE6.webp"
 
 export default function LogoCloud() {
     return (
@@ -54,14 +54,14 @@ export default function LogoCloud() {
                                     height="128"
                                     width="auto" />
                             </div>
-                            <div className="flex">
+                            {/* <div className="flex">
                                 <img
                                     className="mx-auto h-32 sm:h-40 md:h-64 w-auto dark:invert"
                                     src={IEEE6}
                                     alt="Laravel Logo"
                                     height="112"
                                     width="auto" />
-                            </div>
+                            </div> */}
                         </InfiniteSlider>
                         <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-10 sm:w-20 pointer-events-none"></div>
                         <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-10 sm:w-20 pointer-events-none"></div>

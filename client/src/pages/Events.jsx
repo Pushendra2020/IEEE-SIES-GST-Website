@@ -543,8 +543,13 @@ const Events = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+        <div className="relative">
+          <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-pink-400"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white text-lg font-semibold animate-pulse">Loading Events...</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -577,7 +582,7 @@ const Events = () => {
           <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl flex justify-center">
             <EventCard
               key={event._id}
-              image={event.eventImage?.url}
+              image={`${event.eventImage.url.replace('/upload/', '/upload/f_auto,q_auto/')}`}
               title={event.eventName}
               description={event.eventDescription}
               state={event.eventState}

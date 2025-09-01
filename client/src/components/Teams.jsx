@@ -3,7 +3,7 @@ import axios from "axios";
 import ProfileCard from "./Components/ProfileCard/ProfileCard";
 import TeamSection from "./team";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/siesLogo.png"
+import logo from "../assets/siesLogo.webp"
 export default function Teams() {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,9 +32,11 @@ export default function Teams() {
     );
 
   return (
-    <section className="min-h-screen flex flex-col  bg-black/80 text-white py-10">
+    <>
+    
+    <section className="min-h-screen flex flex-col  bg-black/80 text-white">
        <NavLink to='/' >
-          <img src={logo} alt="Logo" className=" ml-7 mt-7 h-20 w-20" />
+          <img src={logo} alt="Logo" className=" ml-7 mt-7 h-14 w-14 mb-6 lg:h-20 lg:w-20" />
         </NavLink>
       <h1 className="text-4xl font-bold  text-center font-['Press_Start_2P'] text-pink-500">
         Our Team
@@ -58,6 +60,7 @@ export default function Teams() {
       </div> */}
       <TeamSection/>
     </section>
+    </>
   );
 }
 

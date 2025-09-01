@@ -115,7 +115,7 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import '../index.css'
 import '../custom.css'
-import logo from "../assets/siesLogo.png";
+import logo from "../assets/siesLogo.webp";
 //import { useMainEffects } from "../mainScript";
 // Register the ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
@@ -327,7 +327,7 @@ const Hero = () => {
 
     return (
         <>
-            <div className="bg-elements">
+            {/* <div className="bg-elements">
                 <div className="grid"></div>
                 <div className="stars"></div>
                 <div className="shape shape1"></div>
@@ -335,7 +335,7 @@ const Hero = () => {
                 <div className="shape shape3"></div>
                 <div className="shape shape4"></div>
                 <div id="starfield-container"></div>
-            </div>
+            </div> */}
            
                 <div className="w-full flex items-start">
                     <NavLink to='/'>

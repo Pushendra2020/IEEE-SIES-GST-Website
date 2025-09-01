@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<div className="text-center text-cyan-400 mt-20">Loading...</div>}>
         <>
-          <SplashCursor />
+          {/* <SplashCursor /> */}
           <Hero />
           <AboutUs />
           <Events />
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     path: "/team",
     element: (
       <Suspense fallback={<div className="text-center text-cyan-400 mt-20">Loading...</div>}>
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         <Teams />
       </Suspense>
     ),
