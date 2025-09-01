@@ -9,7 +9,7 @@ export default function AboutUs() {
     <section id="aboutus" className="parallax-section">
       <h2 className="section-title" style={{ color: "#ff00a6" }}>About Us</h2>
       <p className="section-text">
-        We are the IEEE SIES GST Student Body for the academic year 2024, dedicated to fostering a collaborative environment for students interested in engineering, technology, and innovation.
+        We are the IEEE SIES GST Student Body for the academic year 2025, dedicated to fostering a collaborative environment for students interested in engineering, technology, and innovation.
       </p>
 
       <div className="flex gap-8 justify-center items-center mt-6 flex-wrap">
