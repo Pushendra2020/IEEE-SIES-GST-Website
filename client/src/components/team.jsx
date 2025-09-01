@@ -136,7 +136,7 @@ const TeamMemberCard = React.memo(({ member }) => {
           <div className="absolute inset-0 bg-gray-300/20 rounded-md animate-pulse"></div>
         )}
         <img
-          className={`w-full h-full rounded-md object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110 ${
+          className={`w-full h-[55vh] lg:w-full lg:h-full rounded-md object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-100 ${
             imageLoaded ? 'opacity-100 grayscale hover:grayscale-0' : 'opacity-0'
           }`}
           src={`${member.photo.url.replace('/upload/', '/upload/f_auto,q_auto/')}`}
@@ -152,7 +152,7 @@ const TeamMemberCard = React.memo(({ member }) => {
         )}
       </div>
       
-      <div className="w-full px-2 pt-4 space-y-2">
+      <div className="w-full px-2 pt-4 ">
         <h3 className="text-base sm:text-lg md:text-xl font-medium text-white tracking-wide group-hover:tracking-wider transition-all duration-300">
           {member.name}
         </h3>

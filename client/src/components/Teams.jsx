@@ -3,6 +3,7 @@ import axios from "axios";
 import ProfileCard from "./Components/ProfileCard/ProfileCard";
 import TeamSection from "./team";
 import { NavLink } from "react-router-dom";
+import { LucideSquareArrowLeft } from "lucide-react";
 import logo from "../assets/siesLogo.webp"
 export default function Teams() {
   const [members, setMembers] = useState([]);
@@ -35,9 +36,15 @@ export default function Teams() {
     <>
     
     <section className="min-h-screen flex flex-col  bg-black/80 text-white">
-       <NavLink to='/' >
-          <img src={logo} alt="Logo" className=" ml-7 mt-7 h-14 w-14 mb-6 lg:h-20 lg:w-20" />
-        </NavLink>
+       <div className="flex justify-between items-center px-7 py-5">
+          <NavLink to='/' className='flex items-center gap-4'>
+           
+            <button className="bg-transparent border border-pink-500 text-pink-500 py-2 px-4 rounded-md hover:bg-pink-500 hover:text-white transition duration-300 flex items-center gap-2">
+              <LucideSquareArrowLeft />
+              <span>Go Back</span>
+            </button>
+          </NavLink>
+        </div>
       <h1 className="text-4xl font-bold  text-center font-['Press_Start_2P'] text-pink-500">
         Our Team
       </h1>
