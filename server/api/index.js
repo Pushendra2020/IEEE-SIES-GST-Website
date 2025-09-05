@@ -22,7 +22,7 @@ import express from "express";
 import serverless from "serverless-http";
 import dotenv from "dotenv";
 import connectDB from "../database/db.database.js"; 
-import appRoutes from "../routes/index.js"; // if you have routes folder
+import appRoutes from "../app.js"; // if you have routes folder
 
 dotenv.config({ path: "./.env" });
 
