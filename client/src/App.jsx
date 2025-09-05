@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import "./custom.css";
-import axios from "axios";
+
 import { teamLoader } from "./components/team";
 import SplashCursor from "./components/Animations/SplashCursor/SplashCursor";
 
@@ -49,13 +49,7 @@ const router = createBrowserRouter([
 
 
 export default function App() {
-axios.get(`${import.meta.env.VITE_API_URL}/api/health`)
-  .then(res => {
-    console.log(res.data);
-  })
-  .catch(err => {
-    console.error(err);
-  });
+
 
   return <RouterProvider router={router} />;
 }

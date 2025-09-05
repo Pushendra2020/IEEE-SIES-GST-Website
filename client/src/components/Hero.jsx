@@ -123,7 +123,7 @@ gsap.registerPlugin(ScrollToPlugin)
 const Hero = () => {
     const heroTextRef = useRef(null)
     const taglineRef = useRef(null)
-   // useMainEffects()
+    useMainEffects()
     useEffect(() => {
         // Smooth scroll function
         const smoothScroll = (target, duration = 1.5) => {
