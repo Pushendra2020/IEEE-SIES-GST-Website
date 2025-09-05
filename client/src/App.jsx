@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 
 
 export default function App() {
-axios.get("/api/hello")
+axios.get(`${process.env.REACT_APP_API_URL}/api/hello`)
   .then(res => {
     console.log(res.data);
   })
