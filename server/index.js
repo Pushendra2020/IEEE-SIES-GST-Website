@@ -1,69 +1,36 @@
-// import connectDB from "./database/db.database.js";
-// import app from "./app.js";
-// import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./database/db.database.js";
+import app from "./app.js";
 
-// dotenv.config({
-//     path:'./.env'
-// })
+dotenv.config({ path: "./.env" });
 
-// connectDB()
-// .then(()=>{
-//     // app.listen(process.env.PORT || 3000,()=>{
-//     //     console.log(`The PORT is running on ${process.env.PORT}`)
-//     // })
-//     app.get(`${process.env.ORIGIN1}/api/hello`, (req, res) => {
-//   res.json({ message: "Hello from Express on Vercel!" });
-// });
-// }).catch((error)=>{
-//     console.log("Failed to Connect :( ",error)
-// })
+// Connect to database
+connectDB()
+  .then(() => {
+    console.log("✅ Database connected successfully");
+  })
+  .catch((err) => {
+    console.error("❌ Database connection failed:", err);
+    process.exit(1);
+  });
 
-// app.get('/', (req, res) => {
-//     res.send('Backend is running');
-// });
+// Health check route
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Server is running"
+  });
+});
 
+// Handle production errors
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    status: "error",
+    message: "Something went wrong!"
+  });
+});
 
-
-
-
-
-
-
-
-
-
-// import express from "express";
-// import serverless from "serverless-http";
-// import dotenv from "dotenv";
-// import connectDB from "./database/db.database.js"; 
-// import app from "./app.js"; // if you have routes folder
-
-// dotenv.config({ path: "./.env" });
-
-// //const app = express();
-
-// // Middleware
-// app.use(express.json());
-
-// // Connect DB (runs only once when cold start happens)
-// connectDB()
-//   .then(() => {
-//     console.log("✅ Database connected");
-//   })
-//   .catch((err) => {
-//     console.error("❌ DB connection failed", err);
-//   });
-
-// // Routes
-// app.get("/", (req, res) => {
-//     console.log("Backend is running")
-//   res.send("Backend is running 🚀");
-// });
-// app.get(`${process.env.ORIGIN1}/api/hello`, (req, res) => {
-//   res.json({ message: "Hello from Express on Vercel!" });
-// });
-
-// //app.use("/api", app); // your existing routes
-
-// // Export for Vercel
-// export default serverless(app);
+// Export the Express API
+export default app;
