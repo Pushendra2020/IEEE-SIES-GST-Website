@@ -32,38 +32,38 @@
 
 
 
-import express from "express";
-import serverless from "serverless-http";
-import dotenv from "dotenv";
-import connectDB from "./database/db.database.js"; 
-import app from "./app.js"; // if you have routes folder
+// import express from "express";
+// import serverless from "serverless-http";
+// import dotenv from "dotenv";
+// import connectDB from "./database/db.database.js"; 
+// import app from "./app.js"; // if you have routes folder
 
-dotenv.config({ path: "./.env" });
+// dotenv.config({ path: "./.env" });
 
-//const app = express();
+// //const app = express();
 
-// Middleware
-app.use(express.json());
+// // Middleware
+// app.use(express.json());
 
-// Connect DB (runs only once when cold start happens)
-connectDB()
-  .then(() => {
-    console.log("✅ Database connected");
-  })
-  .catch((err) => {
-    console.error("❌ DB connection failed", err);
-  });
+// // Connect DB (runs only once when cold start happens)
+// connectDB()
+//   .then(() => {
+//     console.log("✅ Database connected");
+//   })
+//   .catch((err) => {
+//     console.error("❌ DB connection failed", err);
+//   });
 
-// Routes
-app.get("/", (req, res) => {
-    console.log("Backend is running")
-  res.send("Backend is running 🚀");
-});
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from Express on Vercel!" });
-});
+// // Routes
+// app.get("/", (req, res) => {
+//     console.log("Backend is running")
+//   res.send("Backend is running 🚀");
+// });
+// app.get(`${process.env.ORIGIN1}/api/hello`, (req, res) => {
+//   res.json({ message: "Hello from Express on Vercel!" });
+// });
 
-//app.use("/api", app); // your existing routes
+// //app.use("/api", app); // your existing routes
 
-// Export for Vercel
-export default serverless(app);
+// // Export for Vercel
+// export default serverless(app);
