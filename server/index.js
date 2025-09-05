@@ -22,13 +22,6 @@ app.get("/api/health", (req, res) => {
     message: "Server is health is ok"
   });
 });
-app.get("/", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Backend is running"
-  });
-});
- //Here 
 // Handle production errors
 app.use((err, req, res, next) => {
   console.error(err.stack);

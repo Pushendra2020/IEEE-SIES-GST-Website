@@ -81,7 +81,7 @@ const CreatePerson = () => {
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded-lg shadow-md mt-6">
       <h2 className="text-xl font-bold mb-4">
-        {type === 'update' ? 'Update Person' : 'Create Person'}
+        {type === 'update' ? 'Update Event' : 'Create Event'}
       </h2>
       <form className="space-y-3" onSubmit={handleSubmit}>
         <Input

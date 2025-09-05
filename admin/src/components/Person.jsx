@@ -67,15 +67,20 @@ const Person = () => {
   if (filteredData.length === 0) {
     return (
       <>
-        <div className="flex justify-center p-4">
-          <Input
-            type="text"
-            placeholder="Search by name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="max-w-md"
-          />
-        </div>
+        <div className="flex justify-between items-center p-4">
+        <Button>
+          <NavLink to='create' state={{ type }}>Create</NavLink>
+        </Button>
+
+        {/* ✅ search bar */}
+        <Input
+          type="text"
+          placeholder="Search by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="max-w-md"
+        />
+      </div>
         <p className="text-gray-500 text-center mt-10">No person data found.</p>
       </>
     )

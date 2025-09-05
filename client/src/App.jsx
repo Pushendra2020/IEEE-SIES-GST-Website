@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 
 
 export default function App() {
-axios.get(`${process.env.REACT_APP_API_URL}/api/health`)
+axios.get(`${import.meta.env.VITE_API_URL}/api/health`)
   .then(res => {
     console.log(res.data);
   })

@@ -45,12 +45,12 @@ const Event = () => {
       console.log("The Error is :", err)
     }
   }
-useEffect(() => {
-  getEventInfo()
-},[some_Count])
+  useEffect(() => {
+    getEventInfo()
+  }, [some_Count])
   // ✅ filter when searchTerm changes
   useEffect(() => {
-    
+
     if (searchTerm.trim() === "") {
       setFilteredData(eventData)
     } else {
@@ -65,7 +65,12 @@ useEffect(() => {
   if (filteredData.length === 0) {
     return (
       <>
-        <div className="flex justify-center p-4">
+        <div className="flex justify-between items-center p-4">
+          <Button>
+            <NavLink to='createEvent' state={{ type }}>Create</NavLink>
+          </Button>
+
+          {/* ✅ search bar */}
           <Input
             type="text"
             placeholder="Search by name..."
@@ -74,7 +79,7 @@ useEffect(() => {
             className="max-w-md"
           />
         </div>
-        <p className="text-gray-500 text-center mt-10">No Event data found.</p>
+        <p className="text-gray-500 text-center mt-10">No person data found.</p>
       </>
     )
   }
@@ -98,17 +103,17 @@ useEffect(() => {
 
       <div className="flex flex-wrap justify-center gap-6 p-6">
         {filteredData.map((event) => (
-         <EventCard
-    key={event._id}
-    id={event._id}
-    eventName={event.eventName}
-    eventImage={event.eventImage.url}
-    eventDescription={event.eventDescription}
-    eventLink={event.eventLink}
-    eventType={event.eventType}
-    eventState={event.eventState}
-    onDelete={handleDelete}
-  />
+          <EventCard
+            key={event._id}
+            id={event._id}
+            eventName={event.eventName}
+            eventImage={event.eventImage.url}
+            eventDescription={event.eventDescription}
+            eventLink={event.eventLink}
+            eventType={event.eventType}
+            eventState={event.eventState}
+            onDelete={handleDelete}
+          />
         ))}
       </div>
     </>
