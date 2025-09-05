@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import "./custom.css";
+import axios from "axios";
 import { teamLoader } from "./components/team";
 import SplashCursor from "./components/Animations/SplashCursor/SplashCursor";
 
