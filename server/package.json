@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "IEEE website",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -r dotenv/config --experimental-json-modules index.js",
@@ -22,6 +22,7 @@
     "express": "^5.1.0",
     "mongoose": "^8.17.1",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "serverless-http": "^4.0.0"
   }
 }
