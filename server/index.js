@@ -19,7 +19,13 @@ connectDB()
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     status: "success",
-    message: "Server is running"
+    message: "Server is health is ok"
+  });
+});
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Backend is running"
   });
 });
 
