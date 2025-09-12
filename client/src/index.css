@@ -19,7 +19,14 @@ body {
 	overflow-x: hidden;
 	position: relative;
 }
-
+#starfield-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 /* Background elements */
 .bg-elements {
 	position: fixed;
@@ -145,47 +152,47 @@ body {
 	}
 }
 
+
 .retro-text {
-	font-size: 80px;
-	font-family: "Press Start 2P", cursive;
-	text-transform: uppercase;
-	font-weight: bold;
-	background: linear-gradient(to bottom, #00c3ff 50%, #ff00a6 50%);
-	background-size: 100% 200%;
-	background-position: 0% 0%;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	position: relative;
-	animation: colorShift 4s infinite alternate ease-in-out;
-	z-index: 1;
-	margin-top: 60px;
-	text-align: center;
+  font-size: 80px;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #00c3ff 50%, #ff00a6 50%);
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  animation: colorShift 4s infinite alternate ease-in-out;
+  z-index: 1;
+  margin-top: 60px;
+  text-align: center;
 }
 .retro-text::before {
-	content: attr(data-text);
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-	-webkit-text-fill-color: transparent;
-	filter: blur(12px) brightness(1);
-	z-index: -1;
-	animation: colorShift 4s infinite alternate ease-in-out;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  -webkit-text-fill-color: transparent;
+  filter: blur(12px) brightness(1);
+  z-index: -1;
+  animation: colorShift 4s infinite alternate ease-in-out;
 }
 @keyframes colorShift {
-	0% {
-		background-position: 0% 0%;
-	}
-	50% {
-		background-position: 0% 100%;
-	}
-	100% {
-		background-position: 0% 0%;
-	}
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
-
 .hero-container {
 	
 	width: 100vw;

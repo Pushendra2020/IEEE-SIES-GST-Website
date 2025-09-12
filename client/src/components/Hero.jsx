@@ -124,6 +124,7 @@ const Hero = () => {
     const heroTextRef = useRef(null)
     const taglineRef = useRef(null)
     useMainEffects()
+    //initStarfield()
     useEffect(() => {
         // Smooth scroll function
         const smoothScroll = (target, duration = 1.5) => {
@@ -335,6 +336,7 @@ const Hero = () => {
                 <div className="shape shape3"></div>
                 <div className="shape shape4"></div>
                 <div id="starfield-container"></div>
+
             </div>
            
                 <div className="w-full flex items-start">
@@ -344,7 +346,7 @@ const Hero = () => {
                 </div>
             
             <div className="hero-container" id="home">
-                <div className="retro-text" data-text="IEEE-SIESGST" ref={heroTextRef}>IEEE-SIESGST</div>
+                <div className="retro-text"  ref={heroTextRef}>IEEE-SIESGST</div>
                 <div className="hero-tagline" ref={taglineRef}>Excellence through innovation</div>
                 <nav className="navbar w-full px-2 sm:px-6">
                     <ul className="nav-menu flex flex-wrap justify-center items-center gap-2 sm:gap-4 w-full text-xs sm:text-base">

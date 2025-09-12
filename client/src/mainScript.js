@@ -1,12 +1,15 @@
 // This file replicates your original script.js logic for shapes, parallax, glitch, and starfield
 import { useEffect } from "react";
-//import * as THREE from "three";
+//import { initStarfield } from "./lib/starfieldUtils";
+import * as THREE from "three";
+
+
 
 export function useMainEffects() {
   useEffect(() => {
     // Only run effects on home route
-    if (window.location.pathname !== '/') return;
-
+   
+initStarfield()
     // Get background elements
     const bgElements = document.querySelector(".bg-elements");
     const staticShapes = document.querySelectorAll(".shape");
@@ -263,21 +266,22 @@ export function useMainEffects() {
           document.body.removeChild(message);
         }, 300);
       }, 2000);
+      initStarfield()
     }
 
     // Add glitch animation keyframes
     const style = document.createElement("style");
-    style.textContent = `
-      @keyframes glitch {
-        0% { transform: translate(0); }
-        20% { transform: translate(-2px, 2px); }
-        40% { transform: translate(-2px, -2px); }
-        60% { transform: translate(2px, 2px); }
-        80% { transform: translate(2px, -2px); }
-        100% { transform: translate(0); }
-      }
-    `;
-    document.head.appendChild(style);
+    // style.textContent = `
+    //   @keyframes glitch {
+    //     0% { transform: translate(0); }
+    //     20% { transform: translate(-2px, 2px); }
+    //     40% { transform: translate(-2px, -2px); }
+    //     60% { transform: translate(2px, 2px); }
+    //     80% { transform: translate(2px, -2px); }
+    //     100% { transform: translate(0); }
+    //   }
+    // `;
+    // document.head.appendChild(style);
 
     // Cleanup
     return () => {
@@ -286,5 +290,122 @@ export function useMainEffects() {
       clearInterval(shapeInterval);
       clearInterval(glitchInterval);
     };
+
+   function initStarfield() {
+  // Create scene, camera, and renderer
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  document
+    .getElementById("starfield-container")
+    .appendChild(renderer.domElement);
+
+  // Position camera
+  camera.position.z = 5;
+
+  // Create star triangles
+  const stars = [];
+  const starGeometry = new THREE.BufferGeometry();
+  const starMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.8,
+  });
+
+  // Create star vertices
+  const starVertices = [];
+  const starCount = 200;
+
+  for (let i = 0; i < starCount; i++) {
+    // Create a triangle shape
+    const size = Math.random() * 0.1 + 0.05;
+    const x = (Math.random() - 0.5) * 20;
+    const y = (Math.random() - 0.5) * 20;
+    const z = (Math.random() - 0.5) * 20;
+
+    // Triangle vertices
+    starVertices.push(x, y, z, x + size, y + size, z, x - size, y + size, z);
+
+    // Store star data for animation
+    stars.push({
+      x: x,
+      y: y,
+      z: z,
+      originalX: x,
+      originalY: y,
+      speed: Math.random() * 0.02 + 0.01,
+      size: size,
+    });
+  }
+
+  starGeometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(starVertices, 3)
+  );
+  const starMesh = new THREE.Mesh(starGeometry, starMaterial);
+  scene.add(starMesh);
+
+  // Mouse position tracking
+  let mouseX = 0;
+  let mouseY = 0;
+
+  document.addEventListener("mousemove", (event) => {
+    // Calculate mouse position as a value between -1 and 1
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Update star positions based on continuous mouse movement
+    const positions = starMesh.geometry.attributes.position.array;
+
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      const index = i * 9; // 3 vertices per triangle, 3 coordinates per vertex
+
+      // Calculate movement based on continuous mouse position
+      const moveX = mouseX * 2 * star.speed;
+      const moveY = mouseY * 2 * star.speed;
+
+      // Update triangle vertices
+      positions[index] = star.originalX + moveX; // First vertex
+      positions[index + 1] = star.originalY + moveY;
+      positions[index + 2] = star.z;
+
+      positions[index + 3] = star.originalX + star.size + moveX; // Second vertex
+      positions[index + 4] = star.originalY + star.size + moveY;
+      positions[index + 5] = star.z;
+
+      positions[index + 6] = star.originalX - star.size + moveX; // Third vertex
+      positions[index + 7] = star.originalY + star.size + moveY;
+      positions[index + 8] = star.z;
+    }
+
+    starMesh.geometry.attributes.position.needsUpdate = true;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+}
+
   }, []);
 }
+
