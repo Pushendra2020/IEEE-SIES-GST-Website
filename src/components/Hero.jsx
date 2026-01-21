@@ -120,11 +120,7 @@ const Hero = () => {
 
                 <div className="hero-content relative z-10 max-w-5xl mx-auto flex flex-col items-center">
 
-                    {/* Floating pill badge */}
-                    <div className="hero-badge backdrop-blur-md bg-white/5 border-white/10 px-6 py-2 rounded-full mb-8">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="font-tech text-sm tracking-widest uppercase text-[var(--color-text-secondary)]">IEEE SIES GST Student Branch</span>
-                    </div>
+
 
                     {/* Massive Typography */}
                     <h1 className="hero-title flex flex-col items-center leading-none">
