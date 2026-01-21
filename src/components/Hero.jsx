@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import logo from "../assets/siesLogo.webp"
 
 gsap.registerPlugin(ScrollToPlugin)
 
 const Hero = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,13 +54,14 @@ const Hero = () => {
         <>
             {/* Navbar */}
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    <NavLink to="/" className="flex items-center gap-3">
+                <div className="max-w-7xl mx-auto flex items-center justify-between relative px-4 sm:px-6">
+                    <NavLink to="/" className="flex items-center gap-3 z-50">
                         <img src={logo} alt="IEEE SIES GST" className="w-10 h-10 sm:w-12 sm:h-12" />
                         <span className="text-white font-semibold text-sm sm:text-base hidden sm:block">IEEE SIES GST</span>
                     </NavLink>
 
-                    <ul className="nav-menu">
+                    {/* Desktop Menu */}
+                    <ul className="nav-menu hidden md:flex">
                         <li><a href="#home" className="nav-link">Home</a></li>
                         <li><a href="#aboutus" className="nav-link">About</a></li>
                         <li><a href="#events" className="nav-link">Events</a></li>
@@ -68,9 +70,46 @@ const Hero = () => {
                         <li><a href="#contact" className="nav-link">Contact</a></li>
                     </ul>
 
-                    <NavLink to="/team" className="btn btn-primary hidden sm:inline-flex">
-                        Our Team
-                    </NavLink>
+                    <div className="flex items-center gap-4">
+                        <NavLink to="/team" className="btn btn-primary hidden md:inline-flex">
+                            Our Team
+                        </NavLink>
+
+                        {/* Mobile Menu Toggle */}
+                        <button
+                            className="md:hidden text-white p-2 z-50 relative"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu Overlay */}
+                    <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-all duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                        <ul className="flex flex-col items-center gap-8 text-xl">
+                            {['Home', 'About Us', 'Events', 'Gallery', 'FAQs', 'Contact'].map((item) => (
+                                <li key={item}>
+                                    <a
+                                        href={`#${item.toLowerCase().replace(' ', '')}`}
+                                        className="text-white/80 hover:text-[var(--color-accent-light)] transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {item}
+                                    </a>
+                                </li>
+                            ))}
+                            <li>
+                                <NavLink
+                                    to="/team"
+                                    className="btn btn-primary mt-4"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    Our Team
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
 

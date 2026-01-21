@@ -56,15 +56,15 @@ export default function AboutUs() {
             </a>
           </motion.div>
 
-          {/* Asymmetric Floating Cards */}
-          <div className="relative h-[600px] hidden lg:block">
+          {/* Asymmetric Floating Cards - Responsive */}
+          <div className="relative lg:h-[600px] mt-10 lg:mt-0 flex flex-col gap-6 lg:block">
             {/* Card 1: CS */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute top-0 right-10 w-64 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
+              className="lg:absolute lg:top-0 lg:right-10 w-full lg:w-64 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
             >
               <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400">
                 <img src={cs} alt="CS" className="w-8 h-8 opacity-80" />
@@ -79,7 +79,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="absolute top-1/3 left-0 w-72 p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl hover:-translate-y-2 transition-transform cursor-pointer z-10 card"
+              className="lg:absolute lg:top-1/3 lg:left-0 w-full lg:w-72 p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl hover:-translate-y-2 transition-transform cursor-pointer z-10 card"
             >
               <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
                 <img src={mtts} alt="MTTS" className="w-8 h-8 opacity-80" />
@@ -94,7 +94,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute bottom-10 right-20 w-60 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
+              className="lg:absolute lg:bottom-10 lg:right-20 w-full lg:w-60 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
             >
               <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-4 text-pink-400">
                 <img src={wie} alt="WIE" className="w-8 h-8 opacity-80" />
