@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollToPlugin)
 const Hero = () => {
     const [scrolled, setScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [showLogos, setShowLogos] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,14 +54,14 @@ const Hero = () => {
         }
     }, [])
 
-    // Rotate society logos every 4 seconds
+    // Toggle between text and logos every 4 seconds
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentLogoIndex((prevIndex) => (prevIndex + 1) % societyLogos.length)
+            setShowLogos(prev => !prev)
         }, 4000)
 
         return () => clearInterval(interval)
-    }, [societyLogos.length])
+    }, [])
 
     return (
         <>
@@ -69,14 +70,18 @@ const Hero = () => {
                 <div className="max-w-7xl mx-auto flex items-center justify-between relative px-4 sm:px-6">
                     <NavLink to="/" className="flex items-center gap-3 z-50">
                         <img src={logo} alt="IEEE SIES GST" className="w-10 h-10 sm:w-12 sm:h-12" />
-                        <div className="hidden sm:flex items-center gap-2">
-                            <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">IEEE</span>
-                            <img
-                                src={societyLogos[currentLogoIndex].src}
-                                alt={societyLogos[currentLogoIndex].name}
-                                className="w-8 h-8 object-contain transition-all duration-500 ease-in-out"
-                                key={currentLogoIndex}
-                            />
+                        <div className="hidden sm:flex items-center gap-2 min-w-[280px]">
+                            {showLogos ? (
+                                <div className="flex items-center gap-2 animate-fade-in">
+                                    <img src={csLogo} alt="Computer Society" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                                    <img src={mttsLogo} alt="MTT-S" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                                    <img src={wieLogo} alt="WIE" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                                </div>
+                            ) : (
+                                <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">
+                                    IEEE SIES GST
+                                </span>
+                            )}
                         </div>
                     </NavLink>
 

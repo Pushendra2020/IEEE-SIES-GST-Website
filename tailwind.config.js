@@ -59,7 +59,8 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'shine': 'shine 8s ease-in-out infinite'
+				'shine': 'shine 8s ease-in-out infinite',
+				'fade-in': 'fadeIn 0.5s ease-in-out'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -73,6 +74,10 @@ export default {
 				'shine': {
 					from: { backgroundPosition: '200% center' },
 					to: { backgroundPosition: '-200% center' }
+				},
+				'fadeIn': {
+					from: { opacity: '0', transform: 'scale(0.95)' },
+					to: { opacity: '1', transform: 'scale(1)' }
 				}
 			}
 		}
