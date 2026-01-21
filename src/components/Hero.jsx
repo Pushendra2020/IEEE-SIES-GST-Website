@@ -57,7 +57,7 @@ const Hero = () => {
                 <div className="max-w-7xl mx-auto flex items-center justify-between relative px-4 sm:px-6">
                     <NavLink to="/" className="flex items-center gap-3 z-50">
                         <img src={logo} alt="IEEE SIES GST" className="w-10 h-10 sm:w-12 sm:h-12" />
-                        <span className="text-white font-semibold text-sm sm:text-base hidden sm:block">IEEE SIES GST</span>
+                        <span className="hidden sm:block font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">IEEE SIES GST</span>
                     </NavLink>
 
                     {/* Desktop Menu */}
