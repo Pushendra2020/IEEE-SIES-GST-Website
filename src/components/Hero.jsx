@@ -124,10 +124,10 @@ const Hero = () => {
 
                     {/* Massive Typography */}
                     <h1 className="hero-title flex flex-col items-center leading-none">
-                        <span className="font-display font-light text-[clamp(3.5rem,10vw,8rem)] tracking-tight text-white/90">
+                        <span className="font-display font-light text-[clamp(3.5rem,10vw,8rem)] tracking-tight text-transparent bg-clip-text bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">
                             IEEE
                         </span>
-                        <span className="font-display font-bold text-[clamp(4rem,11vw,9rem)] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 -mt-2 sm:-mt-4">
+                        <span className="font-display font-bold text-[clamp(4rem,11vw,9rem)] tracking-tighter text-transparent bg-clip-text bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine -mt-2 sm:-mt-4">
                             SIES GST
                         </span>
                         <span className="font-tech text-xl sm:text-2xl md:text-3xl text-[var(--color-accent-light)] tracking-[0.2em] uppercase mt-4">
