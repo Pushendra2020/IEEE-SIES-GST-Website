@@ -4,6 +4,9 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import logo from "../assets/siesLogo.webp"
+import csLogo from "../assets/cs.webp"
+import mttsLogo from "../assets/mtts.webp"
+import wieLogo from "../assets/wie.webp"
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -50,6 +53,15 @@ const Hero = () => {
         }
     }, [])
 
+    // Rotate society logos every 4 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentLogoIndex((prevIndex) => (prevIndex + 1) % societyLogos.length)
+        }, 4000)
+
+        return () => clearInterval(interval)
+    }, [societyLogos.length])
+
     return (
         <>
             {/* Navbar */}
@@ -57,7 +69,15 @@ const Hero = () => {
                 <div className="max-w-7xl mx-auto flex items-center justify-between relative px-4 sm:px-6">
                     <NavLink to="/" className="flex items-center gap-3 z-50">
                         <img src={logo} alt="IEEE SIES GST" className="w-10 h-10 sm:w-12 sm:h-12" />
-                        <span className="hidden sm:block font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">IEEE SIES GST</span>
+                        <div className="hidden sm:flex items-center gap-2">
+                            <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">IEEE</span>
+                            <img
+                                src={societyLogos[currentLogoIndex].src}
+                                alt={societyLogos[currentLogoIndex].name}
+                                className="w-8 h-8 object-contain transition-all duration-500 ease-in-out"
+                                key={currentLogoIndex}
+                            />
+                        </div>
                     </NavLink>
 
                     {/* Desktop Menu */}
