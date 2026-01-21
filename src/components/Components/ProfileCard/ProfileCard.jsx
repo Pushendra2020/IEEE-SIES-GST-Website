@@ -1,5 +1,5 @@
 /*
-	Installed from https://reactbits.dev/default/
+  Installed from https://reactbits.dev/default/
 */
 
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
@@ -48,14 +48,7 @@ const ProfileCardComponent = ({
   enableTilt = true,
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
-  miniAvatarUrl,
   name = "Javi A. Torres",
-  title = "Software Engineer",
-  handle = "javicodes",
-  status = "Online",
-  contactText = "Contact",
-  showUserInfo = true,
-  onContactClick,
 }) => {
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
@@ -284,9 +277,7 @@ const ProfileCardComponent = ({
     [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
   );
 
-  const handleContactClick = useCallback(() => {
-    onContactClick?.();
-  }, [onContactClick]);
+
 
   return (
     <div
@@ -309,9 +300,9 @@ const ProfileCardComponent = ({
                 target.style.display = "none";
               }}
             />
-           
+
           </div>
-         
+
         </div>
       </section>
     </div>

@@ -8,7 +8,7 @@ import {
 import "./index.css";
 import "./custom.css";
 
-import { teamLoader } from "./components/team";
+import { teamLoader } from "./loaders/teamLoader";
 import SplashCursor from "./components/Animations/SplashCursor/SplashCursor";
 
 const Teams = lazy(() => import("./components/Teams"));

@@ -4,23 +4,7 @@ import mtts from "../assets/mtts.webp";
 import cs from "../assets/cs.webp";
 import wie from "../assets/wie.webp";
 
-const societies = [
-  {
-    name: "Computer Society",
-    image: cs,
-    description: "Technical workshops, coding events, and skill development in computing.",
-  },
-  {
-    name: "MTT-S",
-    image: mtts,
-    description: "Microwave Theory and Techniques Society chapter for RF engineering.",
-  },
-  {
-    name: "Women in Engineering",
-    image: wie,
-    description: "Promoting diversity and supporting women in technical fields.",
-  },
-];
+
 
 export default function AboutUs() {
   return (

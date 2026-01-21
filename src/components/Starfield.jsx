@@ -8,8 +8,11 @@ export default function Starfield() {
     let renderer, scene, camera, stars;
     let mouseX = 0, mouseY = 0;
     let animationId;
+    const mount = mountRef.current;
 
     function init() {
+      if (!mount) return;
+
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(
         75,
@@ -21,7 +24,7 @@ export default function Starfield() {
       renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // limit DPR for performance
-      mountRef.current.appendChild(renderer.domElement);
+      mount.appendChild(renderer.domElement);
 
       camera.position.z = 5;
 
@@ -133,9 +136,9 @@ export default function Starfield() {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("mousemove", handleMouseMove);
       if (animationId) cancelAnimationFrame(animationId);
-      if (renderer) {
+      if (renderer && mount) {
         renderer.dispose();
-        mountRef.current.removeChild(renderer.domElement);
+        mount.removeChild(renderer.domElement);
       }
     };
   }, []);
