@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Linkedin } from "lucide-react";
 
 // Real Team Data found from SIES GST Official Records (2024-25)
 // Source: siesgst.edu.in
@@ -43,6 +44,21 @@ const TeamMemberCard = React.memo(({ member }) => {
         <span className="text-sm text-[var(--color-accent)] font-medium uppercase tracking-wider">
           {member.team}
         </span>
+
+        {member.linkedin && (
+          <div className="mt-3 flex justify-center">
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-[var(--color-accent-light)] transition-colors"
+              aria-label={`${member.name} LinkedIn Profile`}
+            >
+              <Linkedin size={18} />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
