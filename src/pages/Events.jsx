@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
 
-const EventCard = ({ event, index }) => {
+const EventCard = ({ event, index, isCarousel = false }) => {
   return (
     <motion.div
-      className="card group cursor-pointer overflow-hidden"
+      className={`card group cursor-pointer overflow-hidden ${isCarousel ? 'min-w-[280px] sm:min-w-[320px] flex-shrink-0' : ''}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: isCarousel ? 0 : index * 0.1 }}
     >
       {/* Image */}
       <div className="relative h-40 -mx-6 -mt-6 mb-4 overflow-hidden">
@@ -52,6 +53,20 @@ const EventCard = ({ event, index }) => {
 };
 
 const Events = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: 'start',
+    dragFree: true
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   const events = [
     {
       _id: '1',
@@ -115,10 +130,43 @@ const Events = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Desktop Grid - Hidden on mobile */}
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {events.map((event, index) => (
             <EventCard key={event._id} event={event} index={index} />
           ))}
+        </div>
+
+        {/* Mobile Carousel - Visible on mobile only */}
+        <div className="sm:hidden relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-4 pb-4">
+              {events.map((event) => (
+                <EventCard key={event._id} event={event} index={0} isCarousel={true} />
+              ))}
+            </div>
+          </div>
+
+          {/* Carousel Navigation */}
+          <div className="flex justify-center gap-4 mt-4">
+            <button
+              onClick={scrollPrev}
+              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+
+          {/* Swipe hint */}
+          <p className="text-center text-xs text-[var(--color-text-muted)] mt-2">
+            Swipe to explore more events
+          </p>
         </div>
       </div>
     </section>

@@ -1,18 +1,29 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import mtts from "../assets/mtts.webp";
 import cs from "../assets/cs.webp";
 import wie from "../assets/wie.webp";
 
-
-
 export default function AboutUs() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax transform - watermark moves slower than scroll
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const watermarkScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+
   return (
-    <section id="aboutus" className="section relative overflow-hidden min-h-screen flex items-center">
-      {/* Giant Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-bold text-white/[0.02] pointer-events-none font-display select-none">
+    <section ref={sectionRef} id="aboutus" className="section relative overflow-hidden min-h-screen flex items-center">
+      {/* Giant Watermark with Parallax */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 text-[20vw] font-bold text-white/[0.02] pointer-events-none font-display select-none"
+        style={{ y: watermarkY, scale: watermarkScale }}
+      >
         IEEE
-      </div>
+      </motion.div>
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -29,8 +40,8 @@ export default function AboutUs() {
               <span className="text-[var(--color-accent-light)] uppercase tracking-widest text-sm font-tech">Who We Are</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 leading-tight">
-              Advancing Technology <br />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 md:mb-8 leading-tight">
+              Advancing Technology <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">for Humanity.</span>
             </h2>
 
@@ -40,14 +51,14 @@ export default function AboutUs() {
             </p>
 
             {/* Stats Grid - Minimalist */}
-            <div className="grid grid-cols-2 gap-8 mb-10">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-10">
               <div>
-                <div className="text-4xl font-display font-bold text-white mb-1">150+</div>
-                <div className="text-sm text-[var(--color-text-muted)] uppercase tracking-wider">Active Members</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-1">150+</div>
+                <div className="text-xs sm:text-sm text-[var(--color-text-muted)] uppercase tracking-wider">Active Members</div>
               </div>
               <div>
-                <div className="text-4xl font-display font-bold text-white mb-1">20+</div>
-                <div className="text-sm text-[var(--color-text-muted)] uppercase tracking-wider">Annual Events</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-1">20+</div>
+                <div className="text-xs sm:text-sm text-[var(--color-text-muted)] uppercase tracking-wider">Annual Events</div>
               </div>
             </div>
 
