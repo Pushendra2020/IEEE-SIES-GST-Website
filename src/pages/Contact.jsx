@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, MapPin, Instagram, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, Instagram, Linkedin, Github, Youtube } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -22,14 +22,18 @@ export default function Contact() {
 
             <div className="flex gap-4">
               {[
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Github, href: "#" }
+                { icon: Youtube, href: "https://www.youtube.com/@IEEESIESGST", label: "YouTube", color: "hover:text-[#FF0000] hover:bg-[#FF0000]/10 hover:border-[#FF0000]/20" },
+                { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-500 hover:bg-pink-500/10 hover:border-pink-500/20" },
+                { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-500 hover:bg-blue-500/10 hover:border-blue-500/20" },
+                { icon: Github, href: "#", label: "GitHub", color: "hover:text-white hover:bg-white/10 hover:border-white/20" }
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/5 hover:border-white/20 transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 transition-all duration-300 ${social.color || "hover:text-white hover:bg-white/5 hover:border-white/20"}`}
+                  aria-label={social.label}
                 >
                   <social.icon size={20} />
                 </a>
