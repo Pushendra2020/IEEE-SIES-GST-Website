@@ -1,12 +1,70 @@
-# React + Vite
+# IEEE SIES GST Website (2025-26)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The official website for the **IEEE Student Branch of SIES Graduate School of Technology**, designed to showcase our events, team, galleries, and achievements for the grand term of 2025-26.
 
-Currently, two official plugins are available:
+![IEEE SIES GST Banner](src/assets/siesLogo.webp)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## Expanding the ESLint configuration
+This project is a modern, responsive, and interactive web application built to represent the technological excellence of our student branch. It features a premium dark-themed UI, smooth animations, and a dynamic gallery interaction system.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+-   **Framework:** [React](https://react.dev/) (v19)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations:**
+    -   [Framer Motion](https://www.framer.com/motion/) (Page transitions & interactions)
+    -   [GSAP](https://gsap.com/) (Complex timeline animations)
+-   **3D Elements:** [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) & [Drei](https://github.com/pmndrs/drei)
+-   **Routing:** [React Router DOM](https://reactrouter.com/)
+-   **Icons:** [Lucide React](https://lucide.dev/)
+
+## 🌟 Key Features
+
+-   **Dynamic Hexagonal Gallery:** A unique honeycomb grid layout for the event gallery that reveals alternative images on hover.
+-   **Interactive Timelines & Hero:** Engaging entry animations and scroll-based interactions.
+-   **Responsive Design:** Fully optimized for desktops, tablets, and mobile devices.
+-   **Performance Optimized:** Fast loading times using lazy loading and optimized assets.
+
+## 📦 Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/GauravPatil2515/ieee-website25-26.git
+    cd ieee-website25-26
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**
+    ```bash
+    npm run build
+    ```
+
+## 📂 Project Structure
+
+```
+src/
+├── assets/          # Images, logos, and static assets
+├── components/      # Reusable UI components (Hero, Navbar, EventCard, etc.)
+├── loaders/         # Data loaders (e.g., team data)
+├── pages/           # Main route pages (Home, Events, Team, Gallery, etc.)
+└── Layout/          # Main layout wrapper
+```
+
+## 🤝 Contribution
+
+This project is maintained by the **IEEE SIES GST Technical Team**.
+
+## 📄 License
+
+[MIT](LICENSE)
