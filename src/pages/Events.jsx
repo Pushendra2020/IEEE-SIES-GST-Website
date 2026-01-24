@@ -116,13 +116,14 @@ const Events = () => {
   ];
 
   return (
-    <section id="events" className="section">
-      <div className="container">
+    <section id="events" className="section relative">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="text-center mb-12 sm:mb-16"
         >
           <h2 className="section-title">Events</h2>
           <p className="section-subtitle">
@@ -163,7 +164,6 @@ const Events = () => {
             </button>
           </div>
 
-          {/* Swipe hint */}
           <p className="text-center text-xs text-[var(--color-text-muted)] mt-2">
             Swipe to explore more events
           </p>

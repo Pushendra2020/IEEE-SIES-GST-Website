@@ -8,6 +8,7 @@ import csLogo from "../assets/cs.webp"
 import mttsLogo from "../assets/mtts.webp"
 import wieLogo from "../assets/wie.webp"
 
+
 gsap.registerPlugin(ScrollToPlugin)
 
 const Hero = () => {
