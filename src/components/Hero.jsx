@@ -7,6 +7,7 @@ import logo from "../assets/siesLogo.webp"
 import csLogo from "../assets/cs.webp"
 import mttsLogo from "../assets/mtts.webp"
 import wieLogo from "../assets/wie.webp"
+import grssLogo from "../assets/grss.png"
 
 
 gsap.registerPlugin(ScrollToPlugin)
@@ -129,6 +130,7 @@ const Hero = () => {
                                     <img src={csLogo} alt="Computer Society" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
                                     <img src={mttsLogo} alt="MTT-S" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
                                     <img src={wieLogo} alt="WIE" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                                    <img src={grssLogo} alt="GRSS" className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" />
                                 </div>
                             ) : (
                                 <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-[linear-gradient(110deg,#ffffff,45%,#3b82f6,55%,#ffffff)] bg-[length:250%_100%] animate-shine">

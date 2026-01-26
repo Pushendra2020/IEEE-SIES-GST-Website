@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import mtts from "../assets/mtts.webp";
 import cs from "../assets/cs.webp";
 import wie from "../assets/wie.webp";
+import grss from "../assets/grss.png";
 
 export default function AboutUs() {
   const sectionRef = useRef(null);
@@ -67,51 +68,69 @@ export default function AboutUs() {
             </a>
           </motion.div>
 
-          {/* Asymmetric Floating Cards - Responsive */}
-          <div className="relative lg:h-[600px] mt-10 lg:mt-0 flex flex-col gap-6 lg:block">
+          {/* Structured Grid Layout for Cards - Responsive */}
+          <div className="mt-10 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+
             {/* Card 1: CS */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:absolute lg:top-0 lg:right-10 w-full lg:w-64 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="w-full p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:bg-white/10 transition-all hover:-translate-y-1 cursor-pointer card h-full"
             >
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400">
-                <img src={cs} alt="CS" className="w-8 h-8 opacity-80" />
+              <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-400">
+                <img src={cs} alt="CS" className="w-10 h-10 object-contain opacity-100" />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Computer Society</h3>
-              <p className="text-sm text-[var(--color-text-secondary)]">Driving innovation in computing and software development.</p>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">Driving innovation in computing and software development.</p>
             </motion.div>
 
-            {/* Card 2: MTTS - Center Offset */}
+            {/* Card 2: MTT-S (Shifted down slightly on desktop for staggered look) */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="lg:absolute lg:top-1/3 lg:left-0 w-full lg:w-72 p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl hover:-translate-y-2 transition-transform cursor-pointer z-10 card"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-xl hover:-translate-y-1 transition-all cursor-pointer card h-full lg:mt-8"
             >
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
-                <img src={mtts} alt="MTTS" className="w-8 h-8 opacity-80" />
+              <div className="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 text-purple-400">
+                <img src={mtts} alt="MTTS" className="w-10 h-10 object-contain opacity-100" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">MTT-S</h3>
-              <p className="text-sm text-[var(--color-text-secondary)]">Exploring the spectrum of RF and Microwave engineering.</p>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">Exploring the spectrum of RF and Microwave engineering.</p>
             </motion.div>
 
-            {/* Card 3: WIE - Bottom Right */}
+            {/* Card 3: WIE */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="lg:absolute lg:bottom-10 lg:right-20 w-full lg:w-60 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors cursor-pointer card"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="w-full p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:bg-white/10 transition-all hover:-translate-y-1 cursor-pointer card h-full"
             >
-              <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-4 text-pink-400">
-                <img src={wie} alt="WIE" className="w-8 h-8 opacity-80" />
+              <div className="w-16 h-16 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 text-pink-400">
+                <img src={wie} alt="WIE" className="w-10 h-10 object-contain opacity-100" />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">WIE</h3>
-              <p className="text-sm text-[var(--color-text-secondary)]">Empowering women in technology and engineering.</p>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">Empowering women in technology and engineering.</p>
+            </motion.div>
+
+            {/* Card 4: GRSS (Shifted down on desktop) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:bg-white/10 transition-all hover:-translate-y-1 cursor-pointer card h-full lg:mt-8"
+            >
+              <div className="w-20 h-20 flex items-center justify-center mb-2">
+                <img src={grss} alt="GRSS" className="w-full h-full object-contain opacity-100 scale-125" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">GRSS</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                Focuses on the science and engineering of remote sensing of the Earth, oceans, atmosphere, and space.
+              </p>
             </motion.div>
           </div>
         </div>
