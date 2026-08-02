@@ -1,0 +1,92 @@
+import React, { Suspense } from "react";
+import { useLoaderData } from "react-router-dom";
+import { Linkedin } from "lucide-react";
+
+const LoadingCard = () => (
+  <div className="animate-pulse bg-white/10 backdrop-blur-lg rounded-xl shadow-lg p-2 sm:p-4">
+    <div className="w-full h-40 sm:h-60 md:h-80 lg:h-96 bg-gray-300/20 rounded-md"></div>
+    <div className="w-full px-2 pt-4">
+      <div className="h-4 bg-gray-300/20 rounded w-3/4 mb-2"></div>
+      <div className="h-4 bg-gray-300/20 rounded w-1/2"></div>
+    </div>
+  </div>
+);
+
+const TeamMemberCard = React.memo(({ member }) => {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  const [imageError, setImageError] = React.useState(false);
+
+  return (
+    <div className="group card overflow-hidden p-3 transform transition-all duration-500 ease-out hover:scale-[1.02]">
+      <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg">
+
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
+        )}
+
+        <img
+          className={`w-full h-full object-cover transition-all duration-700
+          ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+          src={member.photo.url}
+          alt={member.name}
+          loading="lazy"
+          onLoad={() => setImageLoaded(true)}
+          onError={() => setImageError(true)}
+        />
+
+      </div>
+
+      <div className="pt-4 text-center">
+        <h3 className="text-xl font-semibold text-white tracking-wide mb-1">
+          {member.name}
+        </h3>
+
+        <span className="text-sm text-[var(--color-accent)] font-medium uppercase tracking-wider">
+          {member.team}
+        </span>
+
+        {member.linkedin && (
+          <div className="mt-3 flex justify-center">
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-[var(--color-accent-light)] transition-colors"
+            >
+              <Linkedin size={18} />
+              LinkedIn
+            </a>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+});
+
+
+const TeamGrid = ({ members }) => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {(members || []).map((member) => (
+      <TeamMemberCard key={member._id} member={member} />
+    ))}
+  </div>
+);
+
+
+function TeamSection({ members }) {
+
+  const loaderMembers = useLoaderData();
+
+  const teamMembers = members ?? loaderMembers ?? [];
+
+  return (
+    <section className="py-8">
+      <Suspense fallback={<LoadingCard />}>
+        <TeamGrid members={teamMembers} />
+      </Suspense>
+    </section>
+  );
+}
+
+export default TeamSection;
