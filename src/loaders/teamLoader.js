@@ -196,17 +196,6 @@ export function teamLoader() {
             linkedin: 'https://www.linkedin.com/in/atharvamatale/'
         },
         
-         {
-            _id: '118',
-            name: 'Madhu Gowda',
-            council: 'Junior Council',
-            team: 'WiE Head',
-            photo: {
-                url: 'https://ui-avatars.com/api/?name=Madhu+Gowda&size=500&background=00629B&color=fff&bold=true'
-            },
-            linkedin: 'https://www.linkedin.com/in/madhu-gowda-561307395'
-        },
-
         {
             _id: '105',
             name: 'Siddhesh Murkute',
@@ -216,6 +205,17 @@ export function teamLoader() {
                 url: 'https://ui-avatars.com/api/?name=Siddhesh+Murkute&size=500&background=00629B&color=fff&bold=true'
             },
             linkedin: 'https://www.linkedin.com/in/siddhesh-murkute-9025332a4'
+        },
+
+        {
+            _id: '118',
+            name: 'Madhu Gowda',
+            council: 'Junior Council',
+            team: 'WiE Head',
+            photo: {
+                url: 'https://ui-avatars.com/api/?name=Madhu+Gowda&size=500&background=00629B&color=fff&bold=true'
+            },
+            linkedin: 'https://www.linkedin.com/in/madhu-gowda-561307395'
         },
 
         {
