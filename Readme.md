@@ -1,4 +1,4 @@
-# IEEE SIES GST Website (2025-26)
+# IEEE SIES GST Website (2026-27)
 
 The official website for the **IEEE Student Branch of SIES Graduate School of Technology**, designed to showcase our events, team, galleries, and achievements for the grand term of 2025-26.
 
