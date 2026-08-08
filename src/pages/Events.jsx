@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
+import ragThumbnail from "../assets/rag_thumbnail.png";
 
 const EventCard = ({ event, index, isCarousel = false }) => {
   return (
@@ -126,7 +127,7 @@ const Events = () => {
       _id: '6',
       eventName: 'Retrieval Augmented Generation',
       eventDescription: 'Building an AI Study Buddy with RAG.',
-      eventImage: { url: 'https://plus.unsplash.com/premium_photo-1682141007707-1f09c5a1d814?w=600&auto=format&fit=crop' },
+      eventImage: { url: ragThumbnail },
       eventType: 'Hands-on Workshop',
       eventState: 'Upcoming',
       eventLink: '#'
