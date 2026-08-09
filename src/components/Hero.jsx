@@ -143,6 +143,7 @@ const Hero = () => {
                         <li><a href="#aboutus" className={`nav-link ${isActive('aboutus') ? 'active' : ''}`}>About</a></li>
                         <li><a href="#events" className={`nav-link ${isActive('events') ? 'active' : ''}`}>Events</a></li>
                         <li><a href="#gallery" className={`nav-link ${isActive('gallery') ? 'active' : ''}`}>Gallery</a></li>
+                        <li><a href="#youtube" className={`nav-link ${isActive('youtube') ? 'active' : ''}`}>YouTube</a></li>
                         <li><a href="#faqs" className={`nav-link ${isActive('faqs') ? 'active' : ''}`}>FAQs</a></li>
                         <li><a href="#contact" className={`nav-link ${isActive('contact') ? 'active' : ''}`}>Contact</a></li>
                     </ul>
@@ -165,7 +166,7 @@ const Hero = () => {
                     {/* Mobile Menu Overlay */}
                     <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-start pt-24 pb-8 overflow-y-auto transition-all duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                         <ul className="flex flex-col items-center gap-6 text-lg">
-                            {['Home', 'About Us', 'Events', 'Gallery', 'FAQs', 'Contact'].map((item) => (
+                            {['Home', 'About Us', 'Events', 'Gallery', 'YouTube', 'FAQs', 'Contact'].map((item) => (
                                 <li key={item}>
                                     <a
                                         href={`#${item.toLowerCase().replace(' ', '')}`}

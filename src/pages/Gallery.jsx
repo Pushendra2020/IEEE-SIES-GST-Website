@@ -251,115 +251,117 @@ export default function Gallery() {
   }
 
   return (
-    <>
-      {/* ==================================================
-          GALLERY HEADER
-      ================================================== */}
+    <section id="gallery" className="section">
+      <div className="container">
+        {/* ==================================================
+            GALLERY HEADER
+        ================================================== */}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2>Event Gallery</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title">Event Gallery</h2>
 
-        <p>
-          A visual journey through our technical events and workshops.
-        </p>
-      </motion.div>
+          <p className="section-subtitle">
+            A visual journey through our technical events and workshops.
+          </p>
+        </motion.div>
 
-      {/* ==================================================
-          HONEYCOMB GRID
-      ================================================== */}
+        {/* ==================================================
+            HONEYCOMB GRID
+        ================================================== */}
 
-      <div className="flex flex-col items-center gap-2 sm:gap-3 px-2 sm:px-4 max-w-7xl mx-auto">
-        {rows.map((row, rowIndex) => (
-          <div
-            key={`row-${rowIndex}`}
-            className={`flex justify-center gap-2 sm:gap-3 ${
-              row.isOffset
-                ? "ml-[calc(3rem+0.5rem)] sm:ml-[calc(4.5rem+0.75rem)] md:ml-[calc(6rem+1rem)]"
-                : ""
-            }`}
-          >
-            {row.items.map((item, itemIndexInRow) => (
-              <motion.div
-                key={`gallery-${rowIndex}-${itemIndexInRow}-${item.frontIndex}-${item.backIndex}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: itemIndexInRow * 0.05,
-                }}
-                className="relative group cursor-pointer"
-              >
-                {/* ==================================================
-                    HEXAGON
-                ================================================== */}
-
-                <div
-                  className="w-24 h-28 sm:w-36 sm:h-40 md:w-48 md:h-52 relative overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-10 bg-gray-900"
-                  style={{
-                    clipPath:
-                      "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+        <div className="flex flex-col items-center gap-2 sm:gap-3 px-2 sm:px-4 max-w-7xl mx-auto">
+          {rows.map((row, rowIndex) => (
+            <div
+              key={`row-${rowIndex}`}
+              className={`flex justify-center gap-2 sm:gap-3 ${
+                row.isOffset
+                  ? "ml-[calc(3rem+0.5rem)] sm:ml-[calc(4.5rem+0.75rem)] md:ml-[calc(6rem+1rem)]"
+                  : ""
+              }`}
+            >
+              {row.items.map((item, itemIndexInRow) => (
+                <motion.div
+                  key={`gallery-${rowIndex}-${itemIndexInRow}-${item.frontIndex}-${item.backIndex}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    delay: itemIndexInRow * 0.05,
                   }}
+                  className="relative group cursor-pointer"
                 >
                   {/* ==================================================
-                      FRONT IMAGE
-                  ================================================== */}
-
-                  <img
-                    src={item.front}
-                    alt="IEEE Event Gallery"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out opacity-100 group-hover:opacity-0"
-                    onClick={() => openLightbox(item.frontIndex)}
-                  />
-
-                  {/* ==================================================
-                      BACK IMAGE
-                  ================================================== */}
-
-                  <img
-                    src={item.back}
-                    alt="IEEE Event Gallery"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
-                    onClick={() => openLightbox(item.backIndex)}
-                  />
-
-                  {/* ==================================================
-                      HOVER OVERLAY
-                  ================================================== */}
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* ==================================================
-                      VIEW TEXT
-                  ================================================== */}
-
-                  <div className="absolute inset-x-0 bottom-4 text-center z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 pointer-events-none">
-                    <span className="text-white font-bold text-xs sm:text-sm tracking-widest uppercase drop-shadow-md">
-                      View
-                    </span>
-                  </div>
-
-                  {/* ==================================================
-                      BORDER GLOW
+                      HEXAGON
                   ================================================== */}
 
                   <div
-                    className="absolute inset-0 border-4 border-transparent group-hover:border-[var(--color-accent)]/30 transition-colors duration-300 pointer-events-none"
+                    className="w-24 h-28 sm:w-36 sm:h-40 md:w-48 md:h-52 relative overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-10 bg-gray-900"
                     style={{
                       clipPath:
                         "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
                     }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ))}
+                  >
+                    {/* ==================================================
+                        FRONT IMAGE
+                    ================================================== */}
+
+                    <img
+                      src={item.front}
+                      alt="IEEE Event Gallery"
+                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out opacity-100 group-hover:opacity-0"
+                      onClick={() => openLightbox(item.frontIndex)}
+                    />
+
+                    {/* ==================================================
+                        BACK IMAGE
+                    ================================================== */}
+
+                    <img
+                      src={item.back}
+                      alt="IEEE Event Gallery"
+                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-out opacity-0 group-hover:opacity-100"
+                      onClick={() => openLightbox(item.backIndex)}
+                    />
+
+                    {/* ==================================================
+                        HOVER OVERLAY
+                    ================================================== */}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* ==================================================
+                        VIEW TEXT
+                    ================================================== */}
+
+                    <div className="absolute inset-x-0 bottom-4 text-center z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 pointer-events-none">
+                      <span className="text-white font-bold text-xs sm:text-sm tracking-widest uppercase drop-shadow-md">
+                        View
+                      </span>
+                    </div>
+
+                    {/* ==================================================
+                        BORDER GLOW
+                    ================================================== */}
+
+                    <div
+                      className="absolute inset-0 border-4 border-transparent group-hover:border-[var(--color-accent)]/30 transition-colors duration-300 pointer-events-none"
+                      style={{
+                        clipPath:
+                          "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ==================================================
@@ -374,6 +376,6 @@ export default function Gallery() {
         onPrev={goToPrev}
         onNext={goToNext}
       />
-    </>
+    </section>
   );
 }

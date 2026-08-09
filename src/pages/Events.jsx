@@ -99,33 +99,6 @@ const Events = () => {
       eventLink: '#'
     },
     {
-      _id: '3',
-      eventName: 'The Spectrum of Possibilities',
-      eventDescription: 'Career in RF and Microwave session by Associate Professor from SSM Institute of Engineering.',
-      eventImage: { url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop' },
-      eventType: 'Seminar',
-      eventState: 'Completed',
-      eventLink: '#'
-    },
-    {
-      _id: '4',
-      eventName: 'Sustainable Engineering Design',
-      eventDescription: 'Session by a Sustainability professional on corporate sustainability and design.',
-      eventImage: { url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop' },
-      eventType: 'Seminar',
-      eventState: 'Completed',
-      eventLink: '#'
-    },
-    {
-      _id: '5',
-      eventName: 'Vendetta Hackathon',
-      eventDescription: '24-hour intense coding competition challenging developers to build innovative solutions.',
-      eventImage: { url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop' },
-      eventType: 'Hackathon',
-      eventState: 'Completed',
-      eventLink: '#'
-    },
-    {
       _id: '6',
       eventName: 'Retrieval Augmented Generation',
       eventDescription: 'Building an AI Study Buddy with RAG.',

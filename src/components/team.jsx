@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { motion } from "framer-motion";
 import { useLoaderData } from "react-router-dom";
 import { Linkedin } from "lucide-react";
 
@@ -12,14 +13,20 @@ const LoadingCard = () => (
   </div>
 );
 
-const TeamMemberCard = React.memo(({ member }) => {
+const TeamMemberCard = React.memo(({ member, index }) => {
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
   return (
-    <div className="group card overflow-hidden p-3 transform transition-all duration-500 ease-out hover:scale-[1.02]">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      whileHover={{ y: -5 }}
+      className="group card overflow-hidden p-3 transform transition-all duration-300 ease-out"
+    >
       <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg">
-
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
         )}
@@ -33,7 +40,6 @@ const TeamMemberCard = React.memo(({ member }) => {
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageError(true)}
         />
-
       </div>
 
       <div className="pt-4 text-center">
@@ -58,26 +64,21 @@ const TeamMemberCard = React.memo(({ member }) => {
             </a>
           </div>
         )}
-
       </div>
-    </div>
+    </motion.div>
   );
 });
 
-
 const TeamGrid = ({ members }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {(members || []).map((member) => (
-      <TeamMemberCard key={member._id} member={member} />
+    {(members || []).map((member, idx) => (
+      <TeamMemberCard key={member._id} member={member} index={idx} />
     ))}
   </div>
 );
 
-
 function TeamSection({ members }) {
-
   const loaderMembers = useLoaderData();
-
   const teamMembers = members ?? loaderMembers ?? [];
 
   return (

@@ -18,6 +18,7 @@ const JuniorCouncil = lazy(() => import("./pages/JuniorCouncil"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Events = lazy(() => import("./pages/Events"));
 const Gallery = lazy(() => import("./pages/Gallery"));
+const YouTubeShowcase = lazy(() => import("./components/YouTubeShowcase"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Hero = lazy(() => import("./components/Hero"));
 const FAQ = lazy(() => import("./pages/FAQ"));
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
         <AboutUs />
         <Events />
         <Gallery />
+        <YouTubeShowcase />
         <FAQ />
         <Contact />
       </Layout>
