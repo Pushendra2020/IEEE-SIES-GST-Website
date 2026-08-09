@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import ragThumbnail from "../assets/rag_thumbnail.png";
+import signLanguage from "../assets/sign_language.jpeg";
+import epsilon from "../assets/epsilon.jpeg";
 
 const EventCard = ({ event, index, isCarousel = false }) => {
   return (
@@ -82,7 +84,7 @@ const Events = () => {
       _id: '7',
       eventName: 'Epsilon 2026',
       eventDescription: 'Fostering technological innovation through expert talks, workshops, and academic discovery.',
-      eventImage: { url: 'https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=600&auto=format&fit=crop&q=60' },
+      eventImage: { url: epsilon },
       eventType: 'Flagship Event',
       eventState: 'Completed',
       eventLink: 'https://epsilon-2026.vercel.app/'
@@ -91,7 +93,7 @@ const Events = () => {
       _id: '2',
       eventName: 'Indian Sign Language Workshop',
       eventDescription: 'An incredible hands-on session on building a sign language recognizer using Machine Learning.',
-      eventImage: { url: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=600&h=400&fit=crop' },
+      eventImage: { url: signLanguage },
       eventType: 'Workshop',
       eventState: 'Completed',
       eventLink: '#'
