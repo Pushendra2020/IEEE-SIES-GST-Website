@@ -1,211 +1,270 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Youtube, Play, ExternalLink, X, CheckCircle2 } from 'lucide-react';
+import { Youtube, Play, ExternalLink, X, CheckCircle2, Eye, Clock } from 'lucide-react';
 
+/**
+ * ⚠️  REPLACE THE PLACEHOLDER DATA BELOW WITH REAL VIDEOS.
+ *
+ * From https://www.youtube.com/@IEEESIESGST open a video and copy the 11-char
+ * id from the URL (youtube.com/watch?v=XXXXXXXXXXX).
+ *   - `id`        : the 11-char video id (required)
+ *   - `duration`  : "MM:SS" shown bottom-right of the thumbnail (required)
+ *   - `views`     : e.g. "1.2K views" — optional, badge only renders if present
+ *   - `date`      : e.g. "Mar 2026"  — optional
+ * Thumbnails are pulled automatically: maxresdefault.jpg with an automatic
+ * fallback to hqdefault.jpg if the max-res image doesn't exist.
+ */
 const videos = [
   {
-    id: 'kYc5_G4pU-U',
-    title: 'Introduction to Git & GitHub | Technical Series Ep. 4',
+    id: 'REPLACE_ID_1',
+    title: 'Introduction to Git & GitHub | Technical Series',
     category: 'Technical Series',
-    description: 'Learn foundational version control concepts, repository creation, and essential git terminal commands.',
-    watchUrl: 'https://www.youtube.com/watch?v=kYc5_G4pU-U',
-    thumbnail: 'https://img.youtube.com/vi/kYc5_G4pU-U/hqdefault.jpg',
+    description:
+      'Foundational version control — repository creation, commits, and essential git terminal commands.',
     duration: '24:15',
-    badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/40'
+    views: '',
+    date: '',
+    badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
   },
   {
-    id: 'kgC_R6Ds9jw',
-    title: 'Git & GitHub: Branches, PRs & Merge Conflicts | Ep. 5',
-    category: 'Technical Masterclass',
-    description: 'Deep dive into collaborative development, branch management, pull requests, and resolving git conflicts.',
-    watchUrl: 'https://www.youtube.com/watch?v=kgC_R6Ds9jw',
-    thumbnail: 'https://img.youtube.com/vi/kgC_R6Ds9jw/hqdefault.jpg',
+    id: 'REPLACE_ID_2',
+    title: 'Building an AI Study Buddy with RAG | Masterclass',
+    category: 'AI Masterclass',
+    description:
+      'Hands-on retrieval augmented generation — LLMs, vector search, and intelligent Q&A systems.',
     duration: '28:40',
-    badgeColor: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
+    views: '',
+    date: '',
+    badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
   },
   {
-    id: 'kYJ7xJkM-wE',
-    title: 'TECHOPEDIA 13: Step Into The Multiverse | Official Teaser',
+    id: 'REPLACE_ID_3',
+    title: 'TECHOPEDIA | Official Aftermovie',
     category: 'Flagship Event',
-    description: 'Official trailer for IEEE SIES GST annual flagship technical festival featuring major competitions and hackathons.',
-    watchUrl: 'https://www.youtube.com/watch?v=kYJ7xJkM-wE',
-    thumbnail: 'https://img.youtube.com/vi/kYJ7xJkM-wE/hqdefault.jpg',
+    description:
+      'Highlights from IEEE SIES GST’s annual national technical festival — competitions, talks, and hackathons.',
     duration: '02:18',
-    badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/40'
-  }
+    views: '',
+    date: '',
+    badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+  },
 ];
+
+const CHANNEL_URL = 'https://www.youtube.com/@IEEESIESGST';
+const isPlaceholder = (id) => !id || id.startsWith('REPLACE_ID');
+
+// maxres → hq thumbnail with graceful fallback
+function VideoThumb({ video }) {
+  const [src, setSrc] = useState(
+    `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`
+  );
+  return (
+    <img
+      src={src}
+      alt={video.title}
+      loading="lazy"
+      onError={() =>
+        setSrc(`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`)
+      }
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  );
+}
 
 export default function YouTubeShowcase() {
   const [activeVideo, setActiveVideo] = useState(null);
-  const channelUrl = 'https://www.youtube.com/@IEEESIESGST';
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const onKey = (e) => e.key === 'Escape' && setActiveVideo(null);
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [activeVideo]);
 
   return (
-    <section id="youtube" className="section bg-black/40 relative overflow-hidden py-16 sm:py-24">
-      {/* Background Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none" />
+    <section
+      id="youtube"
+      className="section relative overflow-hidden bg-black/40 py-16 sm:py-24"
+    >
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[350px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/15 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-10 right-10 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[160px]" />
 
       <div className="container relative z-10">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-            <Youtube className="w-4 h-4 fill-current text-blue-400" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+            <Youtube className="h-4 w-4 fill-current" />
             <span>Official YouTube Channel</span>
           </div>
-
           <h2 className="section-title">
-            Watch Us On <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">YouTube</span>
+            Watch Us On{' '}
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+              YouTube
+            </span>
           </h2>
           <p className="section-subtitle">
-            Explore technical series, hands-on workshops, student podcasts, and aftermovies from IEEE SIES GST.
+            Technical series, hands-on workshops, student podcasts, and
+            aftermovies from IEEE SIES GST.
           </p>
         </motion.div>
 
-        {/* Channel Banner Card */}
+        {/* Channel card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-neutral-900/90 via-neutral-900/80 to-blue-950/30 backdrop-blur-xl p-6 sm:p-8 mb-12 shadow-2xl group hover:border-blue-500/30 transition-all duration-500"
+          className="group relative mb-12 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-neutral-900/90 via-neutral-900/80 to-blue-950/30 p-6 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-blue-500/30 sm:p-8"
         >
-          {/* Subtle card lighting effect */}
-          <div className="absolute -top-24 -right-24 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500" />
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-            <div className="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
-              {/* Channel Logo */}
-              <div className="relative">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-[0_0_30px_rgba(59,130,246,0.4)] flex-shrink-0 border border-white/20">
-                  <Youtube className="w-10 h-10 fill-current" />
+          <div className="absolute -right-24 -top-24 h-60 w-60 rounded-full bg-blue-500/10 blur-3xl transition-all duration-500 group-hover:bg-blue-500/20" />
+          <div className="relative z-10 flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
+              <div className="relative flex-shrink-0">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-tr from-blue-600 to-cyan-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.4)] sm:h-20 sm:w-20">
+                  <Youtube className="h-10 w-10 fill-current" />
                 </div>
-                <div className="absolute -bottom-1 -right-1 bg-neutral-900 rounded-full p-0.5 border border-white/20 text-cyan-400">
-                  <CheckCircle2 className="w-4 h-4 fill-cyan-400 text-neutral-900" />
+                <div className="absolute -bottom-1 -right-1 rounded-full border border-white/20 bg-neutral-900 p-0.5">
+                  <CheckCircle2 className="h-4 w-4 fill-cyan-400 text-neutral-900" />
                 </div>
               </div>
-
               <div>
-                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">IEEE SIESGST</h3>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/80 font-mono border border-white/10">@IEEESIESGST</span>
+                <div className="mb-1.5 flex items-center justify-center gap-2 sm:justify-start">
+                  <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+                    IEEE SIESGST
+                  </h3>
+                  <span className="rounded-full border border-white/10 bg-white/10 px-2.5 py-0.5 font-mono text-xs text-white/80">
+                    @IEEESIESGST
+                  </span>
                 </div>
-                <p className="text-sm text-[var(--color-text-secondary)] max-w-xl leading-relaxed">
-                  Join our learning community for technical masterclasses, project showcases, podcast episodes, and event highlights.
+                <p className="max-w-xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                  Technical masterclasses, project showcases, podcast episodes,
+                  and event highlights — new videos every month.
                 </p>
               </div>
             </div>
-
-            {/* Actions */}
-            <div className="flex flex-wrap items-center justify-center gap-3 flex-shrink-0">
-              <a
-                href={channelUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(59,130,246,0.35)] hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <Youtube className="w-4 h-4 fill-current" />
-                <span>Subscribe Channel</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-              </a>
-            </div>
+            <a
+              href={CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-shrink-0 items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_25px_rgba(59,130,246,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-500 hover:to-cyan-500 hover:shadow-[0_0_35px_rgba(59,130,246,0.5)]"
+            >
+              <Youtube className="h-4 w-4 fill-current" />
+              Subscribe
+              <ExternalLink className="h-3.5 w-3.5 opacity-80" />
+            </a>
           </div>
         </motion.div>
 
-        {/* 3 Featured Video Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videos.map((video, index) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group cursor-pointer rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/40 bg-neutral-900/60 backdrop-blur-xl transition-all duration-300 flex flex-col h-full hover:shadow-[0_10px_30px_rgba(59,130,246,0.15)] hover:-translate-y-1"
-            >
-              {/* Thumbnail Container */}
-              <div
-                className="relative aspect-video w-full overflow-hidden bg-neutral-950"
-                onClick={() => setActiveVideo(video)}
+        {/* Video cards */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {videos.map((video, index) => {
+            const placeholder = isPlaceholder(video.id);
+            return (
+              <motion.div
+                key={video.id + index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:shadow-[0_10px_30px_rgba(59,130,246,0.15)]"
               >
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                <button
+                  type="button"
+                  disabled={placeholder}
+                  onClick={() => !placeholder && setActiveVideo(video)}
+                  className="relative aspect-video w-full overflow-hidden bg-neutral-950 disabled:cursor-not-allowed"
+                >
+                  {placeholder ? (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-white/40">
+                      <Youtube className="h-8 w-8" />
+                      <span className="px-4 text-center text-[11px] font-medium">
+                        Add a real video id in <br /> YouTubeShowcase.jsx
+                      </span>
+                    </div>
+                  ) : (
+                    <VideoThumb video={video} />
+                  )}
 
-                {/* Category Badge */}
-                <span className={`absolute top-3 left-3 px-2.5 py-1 text-xs font-semibold rounded-md border backdrop-blur-md ${video.badgeColor}`}>
-                  {video.category}
-                </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60" />
 
-                {/* Duration Badge */}
-                <span className="absolute bottom-3 right-3 px-2 py-0.5 text-xs font-mono bg-black/80 text-white/90 rounded border border-white/10">
-                  {video.duration}
-                </span>
+                  <span
+                    className={`absolute left-3 top-3 rounded-md border px-2.5 py-1 text-xs font-semibold backdrop-blur-md ${video.badgeColor}`}
+                  >
+                    {video.category}
+                  </span>
 
-                {/* Pulsing Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_0_25px_rgba(59,130,246,0.7)] group-hover:scale-110 group-hover:bg-blue-500 transition-all duration-300">
-                    <Play className="w-6 h-6 fill-current ml-0.5" />
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded border border-white/10 bg-black/80 px-2 py-0.5 font-mono text-xs text-white/90">
+                    <Clock className="h-3 w-3" /> {video.duration}
+                  </span>
+
+                  {!placeholder && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-500">
+                        <Play className="ml-0.5 h-6 w-6 fill-current" />
+                      </div>
+                    </div>
+                  )}
+                </button>
+
+                <div className="flex flex-grow flex-col justify-between p-5">
+                  <div>
+                    <h3
+                      onClick={() => !placeholder && setActiveVideo(video)}
+                      className="mb-2 line-clamp-2 cursor-pointer text-base font-bold text-white transition-colors group-hover:text-blue-300"
+                    >
+                      {video.title}
+                    </h3>
+                    <p className="mb-4 line-clamp-3 text-xs leading-relaxed text-[var(--color-text-secondary)]">
+                      {video.description}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                    <div className="flex items-center gap-3 text-[11px] text-white/50">
+                      {video.views && (
+                        <span className="inline-flex items-center gap-1">
+                          <Eye className="h-3 w-3" /> {video.views}
+                        </span>
+                      )}
+                      {video.date && <span>{video.date}</span>}
+                      {!video.views && !video.date && (
+                        <span className="text-white/30">IEEE SIES GST</span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => !placeholder && setActiveVideo(video)}
+                      disabled={placeholder}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 transition-colors hover:text-white disabled:opacity-40"
+                    >
+                      <Play className="h-3.5 w-3.5 fill-current text-blue-400" />
+                      Watch Now
+                    </button>
                   </div>
                 </div>
-              </div>
-
-              {/* Content Box */}
-              <div className="p-5 flex flex-col flex-grow justify-between">
-                <div>
-                  <h3
-                    className="text-base font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors cursor-pointer"
-                    onClick={() => setActiveVideo(video)}
-                  >
-                    {video.title}
-                  </h3>
-                  <p className="text-xs text-[var(--color-text-secondary)] line-clamp-3 mb-4 leading-relaxed">
-                    {video.description}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between pt-3 border-t border-white/5">
-                  <button
-                    onClick={() => setActiveVideo(video)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 hover:text-white transition-colors"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-current text-blue-400" />
-                    <span>Watch Now</span>
-                  </button>
-
-                  <a
-                    href={video.watchUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <span>YouTube</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Video Modal Lightbox */}
+      {/* Player modal */}
       <AnimatePresence>
         {activeVideo && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-6"
             onClick={() => setActiveVideo(null)}
           >
             <motion.div
@@ -213,50 +272,46 @@ export default function YouTubeShowcase() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-4xl bg-neutral-900 rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+              className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-neutral-950">
+              <div className="flex items-center justify-between border-b border-white/10 bg-neutral-950 px-5 py-4">
                 <div className="flex items-center gap-2">
-                  <Youtube className="w-5 h-5 text-blue-400 fill-current" />
-                  <h4 className="text-sm font-semibold text-white truncate max-w-md sm:max-w-xl">
+                  <Youtube className="h-5 w-5 fill-current text-blue-400" />
+                  <h4 className="max-w-md truncate text-sm font-semibold text-white sm:max-w-xl">
                     {activeVideo.title}
                   </h4>
                 </div>
                 <button
                   onClick={() => setActiveVideo(null)}
-                  className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
                   aria-label="Close modal"
+                  className="rounded-lg p-1.5 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
 
-              {/* Embedded YouTube Iframe */}
               <div className="relative aspect-video w-full bg-black">
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
                   title={activeVideo.title}
-                  className="w-full h-full border-0"
+                  className="h-full w-full border-0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
 
-              {/* Modal Footer */}
-              <div className="p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-neutral-950 border-t border-white/10">
+              <div className="flex flex-col items-start justify-between gap-3 border-t border-white/10 bg-neutral-950 p-4 sm:flex-row sm:items-center sm:p-5">
                 <p className="text-xs text-[var(--color-text-secondary)]">
                   {activeVideo.description}
                 </p>
                 <a
-                  href={activeVideo.watchUrl}
+                  href={`https://www.youtube.com/watch?v=${activeVideo.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white transition-colors flex-shrink-0"
+                  className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:from-blue-500 hover:to-cyan-500"
                 >
-                  <span>Open on YouTube</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  Open on YouTube <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>
             </motion.div>
