@@ -3,6 +3,21 @@ export function teamLoader() {
     return [
 
         // =========================
+        // Branch Counselor
+        // =========================
+
+        {
+            _id: '0',
+            name: 'Prof. Biju Balakrishnan Pillai',
+            council: 'Senior Council',
+            team: 'Branch Counselor',
+            photo: {
+                url: 'https://ui-avatars.com/api/?name=Biju+Balakrishnan+Pillai&size=500&background=00629B&color=fff&bold=true'
+            },
+            linkedin: 'https://www.linkedin.com/in/biju-balakrishnan-pillai-4a9b2168/'
+        },
+
+        // =========================
         // Senior Council
         // =========================
 
